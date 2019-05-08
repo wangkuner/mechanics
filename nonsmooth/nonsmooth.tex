@@ -1,0 +1,173 @@
+\documentclass[12pt]{article}
+    % fonts
+    % \usepackage{ctex}
+    \usepackage{fontspec}%set fonts
+    % \usepackage{mathptmx}
+    \newfontfamily\cnew{Courier New}
+    \usepackage{amsmath}
+    % \usepackage[notext]{stix}
+    \usepackage{newtxmath}
+    \setmainfont{Times New Roman}
+
+    % paper set
+    \usepackage{geometry}%set paper
+    \geometry{
+        a4paper,
+        total={170mm,257mm},
+        left=20mm,
+        top=20mm,
+    }
+    % set paragraph format
+    %\setlength{\baselineskip}{1.0em}
+    \renewcommand{\baselinestretch}{1.2}
+    % \usepackage{booktabs} % for three-line table
+    \usepackage{array}
+    \usepackage{tabularx}
+
+    \title{Accelerated Projected Gradient Descent method}
+    \author{Kun Wang}
+    \date{\today}
+
+    \begin{document}
+        \maketitle
+        \noindent Accelerated projected gradient descent method
+        \begin{center}
+            \begin{tabularx}{\textwidth}{|X|}
+                \hline
+                \textbf{Algorithm APGD}\\
+                \hline
+                $\boldsymbol{\gamma}_0=\mathbf{0}$\\
+                $\hat{\boldsymbol{\gamma}}_0=\mathbf{1}$\\
+                $\mathbf{x}_0=\boldsymbol{\gamma}_0$\\
+                $\theta_0=1$\\
+                \textbf{for} $k:=0$ \textbf{to} $N_{max}$\\
+                \qquad $\mathbf{g}=\mathbf{N}\mathbf{x}_k-\mathbf{r}$\\
+                \qquad $\boldsymbol{\gamma}_{k+1}=\prod_\mathcal{K}(\mathbf{x}_k-h\mathbf{g})$\\
+                \qquad $\theta_{k+1}=\frac{-\theta_k^2+\theta_k\sqrt{\theta_k^2+4}}{2}$\\
+                \qquad $\beta_{k+1}=\theta_k\frac{1-\theta_k}{\theta_k^2+\theta_{k+1}}$\\
+                \qquad $\mathbf{x}_{k+1}=\boldsymbol{\gamma}_{k+1}+\beta_{k+1}(\boldsymbol{\gamma}_{k+1}-\boldsymbol{\gamma}_k)$\\
+                \qquad $r=r(\boldsymbol{\gamma}_{k+1})$\\
+                \qquad \textbf{if} $r<\epsilon_{min}$\\
+                \qquad\qquad $r_{min}=r$\\
+                \qquad\qquad $\hat{\boldsymbol{\gamma}}=\boldsymbol{\gamma}_{k+1}$\\
+                \qquad \textbf{endif}\\
+                \qquad \textbf{if} $r<\tau$\\
+                \qquad\qquad \textbf{break}\\
+                \qquad \textbf{endif}\\
+                \qquad \textbf{if} $\mathbf{g}^T(\boldsymbol{\gamma}_{k+1}-\boldsymbol{\gamma}_k)>0$\\
+                \qquad\qquad $\mathbf{x}_{k+1}=\boldsymbol{\gamma}_{k+1}$\\
+                \qquad\qquad $\theta_{k+1}=1$\\
+                \qquad \textbf{endif}\\
+                \textbf{endfor}\\
+                \textbf{return} $\boldsymbol{\gamma}^{l+1}=\hat{\boldsymbol{\gamma}}$\\
+                \hline
+            \end{tabularx}
+        \end{center}
+
+        \newpage
+
+        \begin{equation}
+            \begin{aligned}
+                \mathbf{M}(\mathbf{v}_{n+1}-\mathbf{v}_n)+\boldsymbol{\Phi}_{\mathbf{q}}^T\boldsymbol{\lambda}_Bdt
+                &=\mathbf{F}dt+\mathbf{Q}dt+\mathbf{D}^T\boldsymbol{\Lambda}_{A}\\
+                \boldsymbol{\Phi}_{\mathbf{q}}\mathbf{v}_{n+1}+\boldsymbol{\Phi}_t&=\mathbf{0}\\
+                -\boldsymbol{\Upsilon}^o\ni\mathbf{Dv}_{n+1}+\mathbf{b} &\perp \boldsymbol{\Lambda}_A\in \boldsymbol{\Upsilon}
+            \end{aligned}
+        \end{equation}
+
+        $$\boldsymbol{\Lambda}_{A}=\sum_{t_i\in(t_n,t_{n+1}]}{\lambda_{t_i}\delta_{t_i}}$$
+
+        \begin{equation}
+            \mathbf{q}_{n+1}=\mathbf{q}_{n}+h\mathbf{v}_{n+1}
+        \end{equation}
+
+        \begin{equation}
+            \begin{aligned}
+                \mathbf{M}(\mathbf{v}_{n+1}-\mathbf{v}_n)+\boldsymbol{\Phi}_{\mathbf{q}}^T\boldsymbol{\Lambda}_B
+                &=\mathbf{P}+\mathbf{D}^T\boldsymbol{\Lambda}_{A}\\
+                \boldsymbol{\Phi}_{\mathbf{q}}\mathbf{v}_{n+1}+\boldsymbol{\Phi}_t&=\mathbf{0}\\
+                -\boldsymbol{\Upsilon}^o\ni\mathbf{Dv}_{n+1}+\mathbf{b} &\perp \boldsymbol{\Lambda}_A\in \boldsymbol{\Upsilon}
+            \end{aligned}
+        \end{equation}
+
+        \begin{equation}
+            \begin{aligned}
+                \mathbf{v}_{n+1}=\mathbf{v}_n-\mathbf{M}^{-1}\boldsymbol{\Phi}_{\mathbf{q}}^T\boldsymbol{\Lambda}_B
+                +\mathbf{M}^{-1}\mathbf{P}+\mathbf{M}^{-1}\mathbf{D}^T\boldsymbol{\Lambda}_{A}
+            \end{aligned}
+        \end{equation}
+
+        $$\boldsymbol{\Phi}_{\mathbf{q}}(\mathbf{v}_n-\mathbf{M}^{-1}\boldsymbol{\Phi}_{\mathbf{q}}^T\boldsymbol{\Lambda}_B
+        +\mathbf{M}^{-1}\mathbf{P}+\mathbf{M}^{-1}\mathbf{D}^T\boldsymbol{\Lambda}_{A})+\boldsymbol{\Phi}_t=\mathbf{0}$$
+
+        $$\boldsymbol{\Phi}_{\mathbf{q}}\mathbf{v}_n-\boldsymbol{\Phi}_{\mathbf{q}}\mathbf{M}^{-1}\boldsymbol{\Phi}_{\mathbf{q}}^T\boldsymbol{\Lambda}_B
+        +\boldsymbol{\Phi}_{\mathbf{q}}\mathbf{M}^{-1}\mathbf{P}+\boldsymbol{\Phi}_{\mathbf{q}}\mathbf{M}^{-1}\mathbf{D}^T\boldsymbol{\Lambda}_{A}+\boldsymbol{\Phi}_t=\mathbf{0}$$
+        
+        $$\mathbf{B}=\boldsymbol{\Phi}_{\mathbf{q}}\mathbf{M}^{-1}\boldsymbol{\Phi}_{\mathbf{q}}^T$$
+
+        $$\boldsymbol{\Lambda}_B=\mathbf{B}^{-1}\boldsymbol{\Phi}_{\mathbf{q}}\mathbf{v}_n+
+        \mathbf{B}^{-1}\boldsymbol{\Phi}_{\mathbf{q}}\mathbf{M}^{-1}\mathbf{P}+
+        \mathbf{B}^{-1}\boldsymbol{\Phi}_{\mathbf{q}}\mathbf{M}^{-1}\mathbf{D}^T\boldsymbol{\Lambda}_{A}+
+        \mathbf{B}^{-1}\boldsymbol{\Phi}_t$$
+
+        \begin{equation}
+            \begin{aligned}
+                \mathbf{v}_{n+1}=&\mathbf{v}_n-\mathbf{M}^{-1}\boldsymbol{\Phi}_{\mathbf{q}}^T
+                \mathbf{B}^{-1}\boldsymbol{\Phi}_{\mathbf{q}}\mathbf{v}_n
+                -\mathbf{M}^{-1}\boldsymbol{\Phi}_{\mathbf{q}}^T\mathbf{B}^{-1}\boldsymbol{\Phi}_{\mathbf{q}}\mathbf{M}^{-1}\mathbf{P}\\
+                &-\mathbf{M}^{-1}\boldsymbol{\Phi}_{\mathbf{q}}^T\mathbf{B}^{-1}\boldsymbol{\Phi}_{\mathbf{q}}\mathbf{M}^{-1}\mathbf{D}^T\boldsymbol{\Lambda}_{A}
+                -\mathbf{M}^{-1}\boldsymbol{\Phi}_{\mathbf{q}}^T\mathbf{B}^{-1}\boldsymbol{\Phi}_t
+                +\mathbf{M}^{-1}\mathbf{P}+\mathbf{M}^{-1}\mathbf{D}^T\boldsymbol{\Lambda}_{A}
+            \end{aligned}
+        \end{equation}
+
+        \begin{equation}
+            \begin{aligned}
+                \mathbf{Dv}_{n+1}+\mathbf{b}=&\mathbf{D}\mathbf{M}^{-1}\mathbf{D}^T\boldsymbol{\Lambda}_{A}
+                -\mathbf{D}\mathbf{M}^{-1}\boldsymbol{\Phi}_{\mathbf{q}}^T\mathbf{B}^{-1}\boldsymbol{\Phi}_{\mathbf{q}}\mathbf{M}^{-1}\mathbf{D}^T\boldsymbol{\Lambda}_{A}\\
+                &+\mathbf{D}\mathbf{v}_n-\mathbf{D}\mathbf{M}^{-1}\boldsymbol{\Phi}_{\mathbf{q}}^T
+                \mathbf{B}^{-1}\boldsymbol{\Phi}_{\mathbf{q}}\mathbf{v}_n
+                -\mathbf{D}\mathbf{M}^{-1}\boldsymbol{\Phi}_{\mathbf{q}}^T\mathbf{B}^{-1}\boldsymbol{\Phi}_{\mathbf{q}}\mathbf{M}^{-1}\mathbf{P}
+                +\mathbf{D}\mathbf{M}^{-1}\mathbf{P}\\
+                &-\mathbf{D}\mathbf{M}^{-1}\boldsymbol{\Phi}_{\mathbf{q}}^T\mathbf{B}^{-1}\boldsymbol{\Phi}_t
+                +\mathbf{b}\\
+                =&\mathbf{N}\boldsymbol{\Lambda}_A+\mathbf{r}
+            \end{aligned}
+        \end{equation}
+
+        \begin{equation}
+            \begin{aligned}
+                \mathbf{N}=&\mathbf{D}\mathbf{M}^{-1}\mathbf{D}^T
+                -\mathbf{D}\mathbf{M}^{-1}\boldsymbol{\Phi}_{\mathbf{q}}^T\mathbf{B}^{-1}\boldsymbol{\Phi}_{\mathbf{q}}\mathbf{M}^{-1}\mathbf{D}^T\\
+                \mathbf{r}=&\mathbf{D}\mathbf{v}_n-\mathbf{D}\mathbf{M}^{-1}\boldsymbol{\Phi}_{\mathbf{q}}^T
+                \mathbf{B}^{-1}\boldsymbol{\Phi}_{\mathbf{q}}\mathbf{v}_n
+                -\mathbf{D}\mathbf{M}^{-1}\boldsymbol{\Phi}_{\mathbf{q}}^T\mathbf{B}^{-1}\boldsymbol{\Phi}_{\mathbf{q}}\mathbf{M}^{-1}\mathbf{P}
+                +\mathbf{D}\mathbf{M}^{-1}\mathbf{P}\\
+                &-\mathbf{D}\mathbf{M}^{-1}\boldsymbol{\Phi}_{\mathbf{q}}^T\mathbf{B}^{-1}\boldsymbol{\Phi}_t
+                +\mathbf{b}
+            \end{aligned}
+        \end{equation}
+        \newpage
+
+        \noindent CCP in Time-stepping scheme
+        \begin{center}
+            \begin{tabularx}{\textwidth}{|X|}
+                \hline
+                \textbf{Algorithm of Time-Stepping Scheme}\\
+                \hline
+                unknows $\mathbf{v}_{n+1},\boldsymbol{\Lambda}_A,\boldsymbol{\Lambda}_B$\\
+                $\mathbf{v}_0$\\
+                \textbf{while} $t<tend$\\
+                \qquad $\mathbf{q}_{n+1}^*=\mathbf{q}_{n}+\frac{1}{2}h\mathbf{v}_n$\\
+                \qquad contact detection\\
+                \qquad compute $\mathbf{M},\boldsymbol{\Phi}_{\mathbf{q}},\mathbf{B},\mathbf{D},\mathbf{N},\mathbf{r}$\\
+                \qquad \textit{CCPSolver(}$\mathbf{N},\mathbf{r},\tau,h$\textit{)}\\
+                \qquad $\mathbf{v}_{n+1}$\\
+                \qquad $\mathbf{q}_{n+1}=\mathbf{q}_n+h\mathbf{v}_{n+1}$\\
+                \qquad $t=t+h$\\
+                \textbf{end while}\\
+                \hline
+            \end{tabularx}
+        \end{center}
+
+    \end{document}

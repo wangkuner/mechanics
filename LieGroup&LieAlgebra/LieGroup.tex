@@ -1,0 +1,80 @@
+\documentclass[12pt]{article}
+    % fonts
+    \usepackage{ctex}
+    \usepackage{fontspec}%set fonts
+    % \usepackage{mathptmx}
+    \newfontfamily\cnew{Courier New}
+    \usepackage{amsmath}
+    % \usepackage[notext]{stix}
+    \usepackage{newtxmath}
+    \setmainfont{Times New Roman}
+
+    % paper set
+    \usepackage{geometry}%set paper
+    \geometry{
+        a4paper,
+        total={170mm,257mm},
+        left=20mm,
+        top=20mm,
+    }
+    % set paragraph format
+    %\setlength{\baselineskip}{1.0em}
+    \renewcommand{\baselinestretch}{1.0}
+    % \usepackage{booktabs} % for three-line table
+    \usepackage{array}
+
+    \title{Learning Notes of Apr 2019}
+    \author{Kun Wang}
+    \date{2019年4月}
+
+    \begin{document}
+        \maketitle
+
+        \begin{center}
+            \begin{tabular}{|m{16cm}|}
+                \hline
+                stage 1\\
+                \hline
+                \begin{enumerate}
+                    \item The model of the satellite with solar panels.
+                    \item The model of the prismatic deployable trusses.
+                    \item The dynamics of the prismatic deployable trusses.
+                \end{enumerate}\\
+                \hline
+            \end{tabular}
+        \end{center}
+
+        \section{Lie Group and Lie Algebra}
+        Group: Set $G$ with composition rule satisfying 4 axioms.
+        \begin{enumerate}
+           \item closure:$\forall g_1,g_2\in G,g_1g_2\in G$
+           \item associativity:$\forall g_1,g_2,g_3\in G,(g_1g_2)g_3=g_1(g_2g_3)$
+           \item identity:$\exists e\in G,\forall g\in G, ge=eg=g$
+           \item invertibility:$\forall g\in G,\exists g^{-1}\in G, gg^{-1}=g^{-1}g=e$
+        \end{enumerate}
+        Lie group: groups with continuty.\\ 
+        \indent 矩阵指数函数
+        \begin{equation*}
+            \begin{aligned}
+                e^{At}&=I+At+\frac{(At)^2}{2!}+\frac{(At)^3}{3!}+\dots+\frac{(At)^n}{n!}+\dots\\
+                \frac{d}{dt}(e^{At})&=A+A^2t+\frac{A^3t^2}{2!}+\dots+\frac{A^nt^{n-1}}{(n-1)!}+\dots\\
+                &=A(I+At+\frac{(At)^2}{2!}+\dots+\frac{(At)^{n-1}}{(n-1)!}+\dots)=Ae^{At}
+            \end{aligned}
+        \end{equation*}
+        \indent Orthogonal group: $\left\{M\in \mathbb{R}^{n\times n}|MM^T=I\right\}$, $det(M)=\pm 1$\\
+        \indent Special Orthogonal group
+        $SO(3)=\left\{\mathbf{R}\in\mathbb{R}^{3 \times 3}|
+        \mathbf{R}^T\mathbf{R}=\mathbf{I},det(\mathbf{R})=1\right\}$
+        
+        \indent Special Euclidean group
+        $SE(3)=\left\{\mathbf{T}=\begin{bmatrix}
+            \mathbf{R} & \mathbf{x}\\
+            \mathbf{0}^T & 1
+        \end{bmatrix}\in\mathbb{R}^{4 \times 4}|\mathbf{R}\in SO(3),\mathbf{x}\in \mathbb{R}^{3}\right\}$
+        
+        \indent Lie Algebra
+        $$so(3)=\{\phi\in \mathbb{R}^3\}$$
+        $$se(3)=\{\xi\in \mathbb{R}^6\}$$
+
+        把物体的所有状态定义成一个集合。
+    \end{document}

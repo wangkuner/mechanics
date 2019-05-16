@@ -100,12 +100,80 @@
         \end{equation}
 
         \subsection{变分问题Euler方程}
+        \subsubsection{Euler-Lagrange方程}
         \begin{equation}
-            J=\int_A^Bf(y,\dot{y},x)dx
+            J=\int_A^Bf(x,y,\dot{y})dx
         \end{equation}
-        求上式的极值。
+        求上式的极值。\\
+        变分法基本预备定理：如果函数$f(x)$在域$[x_1,x_2]$上连续且对于只满足某些一般条件1)一阶或若干阶可微分；
+        2)在域$[x_1,x_2]$的端点处为0；3)$\|\delta y(x)\|<\epsilon$或
+        $\|\delta y(x)\|$和$\|\delta y'(x)<\epsilon\|$的任意函数$\delta y(x)$，有
+        $$\int_{x_1}^{x_2}f(x)\delta y(x)dx=0$$
+        则在域$[x_1,x_2]$上有$f(x)=0$。
 
+        \noindent 泛函取极值的必要条件是泛函的变分等于0。\\
+        微分变分可对易:$\delta(dx)=d(\delta x)$
+
+        \begin{equation*}
+            \begin{aligned}
+                \Delta J&=\int_A^Bf(x,y+\delta y,(y+\delta y)')dx-\int_A^Bf(x,y,\dot{y})dx\\
+                &=\int_A^Bf(x,y+\delta y,\dot{y}+\delta \dot{y})dx-\int_A^Bf(x,y,\dot{y})dx
+            \end{aligned}
+        \end{equation*}
+        将上式按泰勒公式展开有$\Delta J=\delta J+\delta^2J+\cdots$\\
+        一阶变分$\delta J=\int_A^B\left(\frac{\partial f}{\partial y}\delta y +\frac{\partial f}{\partial \dot{y}}\delta\dot{y}\right)dx$\\
+        二阶变分$\delta^2J=\int_A^B \left( \frac{\partial^2f}{\partial y^2}\delta y^2+
+        2\frac{\partial^2f}{\partial y\partial\dot{y}}\delta y\delta\dot{y}+
+        \frac{\partial^2f}{\partial\dot{y}^2}\delta\dot{y}^2 \right)dx$\\
+        使用分部积分法(integration by parts)将$\delta\dot{y}$转变为$\delta y$有
+        \begin{equation*}
+            \begin{aligned}
+                \delta J&=\int_A^B\left(\frac{\partial f}{\partial y}\delta y +\frac{\partial f}{\partial \dot{y}}\delta\dot{y}\right)dx\\
+                &=\int_A^B\frac{\partial f}{\partial y}\delta ydx+\frac{\partial f}{\partial \dot{y}}\delta y\Big|_A^B-
+                \int_A^B\frac{d}{dx}\left(\frac{\partial f}{\partial \dot{y}}\right)\delta ydx
+            \end{aligned}
+        \end{equation*}
+        由于$\delta y$在$A,B$处取0，故有
+        \begin{equation*}
+            \begin{aligned}
+                \delta J&=\int_A^B\frac{\partial f}{\partial y}\delta ydx-
+                \int_A^B\frac{d}{dx}\left(\frac{\partial f}{\partial \dot{y}}\right)\delta ydx\\
+                &=\int_A^B\left(\frac{\partial f}{\partial y}-\frac{d}{dx}\left(\frac{\partial f}{\partial \dot{y}}\right)\right)\delta ydx
+            \end{aligned}
+        \end{equation*}
+        根据泛函取极值得必要条件$\delta J=0$有
+        \begin{equation}
+            \delta J=\int_A^B\left(\frac{\partial f}{\partial y}-\frac{d}{dx}\left(\frac{\partial f}{\partial \dot{y}}\right)\right)\delta ydx=0
+        \end{equation}
+        根据变分法基本预备定理有
+        \begin{equation}\label{E-L}
+            \frac{\partial f}{\partial y}-\frac{d}{dx}\left(\frac{\partial f}{\partial \dot{y}}\right)=0
+        \end{equation}
+        上式便是变分原理的Euler-Lagrange方程。
+        
+        \subsubsection{含多个未知函数泛函的变分}
+        \begin{equation}
+            J=\int_A^Bf(x,y_1,y_2,\cdots,\dot{y}_1,\dot{y}_2,\cdots)dx
+        \end{equation}
+
+        \begin{equation*}
+            \delta J=\int_A^B\left(\frac{\partial f}{\partial y_i}\delta y_i-\frac{\partial f}{\partial \dot{y}_i}\delta \dot{y}_i\right)dx=0
+        \end{equation*}
+        使用分部积分可得
+        \begin{equation}\label{mE-L}
+            \frac{\partial f}{\partial y_i}-\frac{d}{dx}\left(\frac{\partial f}{\partial \dot{y}_i}\right)=0
+        \end{equation}
+        记$\mathbf{y}=[y_1,y_2,\cdots,y_n]^T$,$\mathbf{\dot{y}}=[\dot{y}_1,\dot{y}_2,\cdots,\dot{y}_n]^T$。上式写成向量的形式为
+        \begin{equation}\label{vE-L}
+            \frac{\partial f}{\partial \mathbf{y}}-\frac{d}{dx}\left(\frac{\partial f}{\partial \dot{\mathbf{y}}}\right)=\mathbf{0}
+        \end{equation}
         \subsection{Hamilton原理}
+        \noindent Lagrangian $L=T-U=L(t,\mathbf{q},\dot{\mathbf{q}})$\\
+        Hamilton函数$H=\int_{t_1}^{t_2}Ldt$\\
+        Hamilton原理(Hamilton principle):$\delta H=0$
+        \begin{equation}\label{vLagrange}
+            \frac{\partial L}{\partial \mathbf{q}}-\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{\mathbf{q}}}\right)=\mathbf{0}
+        \end{equation}
         % \bibliographystyle{plain}
         \bibliography{cm}
     \end{document}

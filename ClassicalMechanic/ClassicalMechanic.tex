@@ -31,36 +31,209 @@
         \maketitle
         \section{牛顿力学}
         \begin{equation}
-            F_k=\frac{dp_k}{dt}
+            F_i=\frac{dp_i}{dt}
         \end{equation}
 
         \section{Lagrange力学}
+
         \subsection{基本概念\cite{2006shen}}
-        位形空间：位形是质点系各质点或连续体中各小单元的位置或位移的集合。位形坐标系所在空间就是位形空间。\par
-        约束：约束分类有理想约束和非理想约束，完整约束/非完整约束，稳定约束/不稳定约束。\\
-        理想约束:在任何虚位移上，约束反力的元功之和为零的约束，反之约束反力元功之和不为零的约束为非理想约束。\\
-        稳定约束:约束方程中不显含时间$t$的约束，反之显含时间$t$的约束为不稳定约束。\\
-        完整约束:约束方程中不含速度或者速度可积分消掉的约束，约束方程中含有不可积分速度的为非完整约束。
-        \par
-        虚功原理：
-        \subsection{第一类Lagrange方程}
-	Lagrange乘子法：$3n$个自由度系统，$s$个约束，选择Lagrange乘子，使得$s$个不独立的虚位移前括号中的项为零，
-	剩余的$3n-s$个独立的虚位移前括号中的项也都等于零。
-        \subsection{第二类Lagrange方程}
+
+        位形空间：位形是质点系各质点或连续体中各小单元的位置或位移的集合。位形坐标系所在空间就是位形空间。
+
+        约束：约束分类有理想约束和非理想约束，完整约束/非完整约束，稳定约束/不稳定约束。
+        \begin{enumerate}
+            \item 理想约束:在任何虚位移上，约束反力的元功之和为零的约束，反之约束反力元功之和不为零的约束为非理想约束。
+            \item 稳定约束:约束方程中不显含时间$t$的约束，反之显含时间$t$的约束为不稳定约束。
+            \item 完整约束:约束方程中不含速度或者速度可积分消掉的约束，约束方程中含有不可积分速度的为非完整约束。
+        \end{enumerate}
+        
+        虚功原理：具有理想约束的质点系，其达到平衡的充分必要条件是，在任何虚位移上，主动力的元功之和为零，即$F_k\delta x_k=0$。
+
+        虚功原理中没有约束反力，而且只能处理静力学问题。要想求得约束反力，可通过Lagrange乘子法解决。要解决动力学问题，需要利用d'Alembert原理。
+
+        d'Alembert原理：对于具有理想约束的质点系，在任何虚位移上，主动力和惯性力的合力为零是系统达到平衡条件的充分必要条件，
+        即$\left(F_k-\frac{dp_k}{dt}\right)\delta x_k=0$
+
+        Newton方程和d'Alembert方程的区别:Newton方程中的力是所有作用力，包括主动力和约束反力。d'Alembert方程中只含有主动力。
+
+        类似d'Alembert原理，还有Gauss最小拘束原理：$Z=\frac{1}{2m_k}\left(F_k-\frac{dp_k}{dt}\right)^2$，真实的运动使"拘束"$Z$取极小值，
+        即$\delta Z=(F_k-m_k\ddot{x}_k)\delta \ddot{x}_k=0$。
+
+        广义坐标:决定质点系各质点或者连续体中诸小单元位形的独立参数。广义坐标的数目就是质点系内各质点或连续体中各小单元的自由度数。
+        Lagrange位形就是广义坐标，Lagrange位形空间就是广义坐标空间。$3n$各d'Alembert位形可以表示为$m$个Lagrange位形的函数
+        \begin{equation}\label{base:1}
+            x_i=x_i(q_k)
+        \end{equation}
+        稳定情况下，即$\frac{dx_i}{dt}=0$，d'Alembert位形$x_i$的全微分为
+        \begin{equation}\label{base:2}
+            dx_i=\frac{\partial x_i}{\partial q_k}dq_k;i=1,2,\cdots,3n;k=1,2,\cdots,m
+        \end{equation}
+        等式两边除以$dt$得
+        \begin{equation}\label{base:3}
+            \dot{x}_i=\frac{\partial x_i}{\partial q_k}\dot{q}_k;i=1,2,\cdots,3n;k=1,2,\cdots,m
+        \end{equation}
+        $\dot{q}_k$为广义速度。将式(\ref{base:3})两边对广义速度求偏导得
+        \begin{equation}\label{base:4}
+            \frac{\partial \dot{x}_i}{\partial \dot{q}_k}=\frac{\partial x_i}{\partial q_k};i=1,2,\cdots,3n;k=1,2,\cdots,m
+        \end{equation}
+        系统动能为
+        \begin{equation}\label{base:5}
+            T=\frac{1}{2}m_i\dot{x}_i^2=\sum_{i=1}^{3n}\frac{1}{2}m_i\frac{\partial x_i}{\partial q_k}\frac{\partial x_i}{\partial q_l}\dot{q}_k\dot{q}_l
+        \end{equation}
+        引入广义质量
+        \begin{equation}\label{base:6}
+            M_{kl}=\sum_{i=1}^{3n}m_i\frac{\partial x_i}{\partial q_k}\frac{\partial x_i}{\partial q_l}
+        \end{equation}
+        稳定情况下系统动能可表示为广义速度的函数
+        \begin{equation}\label{base:7}
+            T=\frac{1}{2}M_{kl}\dot{q}_k\dot{q}_l
+        \end{equation}
+        齐次函数Euler定理：函数$f(x_i)$是$x_i$的$n$次齐次函数，即$f(\lambda^nx_i)=\lambda^nf(x_i)$，有$x_i\frac{\partial f}{\partial x_i}=nf$。\\
+        稳定情况下系统动能是广义速度的二次齐次函数，根据Euler定理有
+        \begin{equation}\label{euler:1}
+            \dot{q}_k\frac{\partial T}{\partial \dot{q}_k}=2T
+        \end{equation}
+        广义动量$p_k=\frac{\partial T}{\partial \dot{q}_k}=m_i\dot{x}_i\frac{\partial \dot{x}_i}{\partial \dot{q}_k}
+        =p_i\frac{\partial \dot{x}_i}{\partial \dot{q}_k}=p_i\frac{\partial x_i}{\partial q_k}$。\\
+        Euler定理式(\ref{euler:1})可表示为
+        \begin{equation}\label{base:9}
+            T=\frac{1}{2}p_k\dot{q}_k
+        \end{equation}
+        元功$dW=F_idx_i=F_i\frac{\partial x_i}{\partial q_k}dq_k=Q_kdq_k$。记广义力为
+        \begin{equation}\label{base:10}
+            Q_k=F_i\frac{\partial x_i}{\partial q_k}
+        \end{equation}
+
+        对于不稳定情况
+        \begin{equation}\label{base:11}
+            dx_i=\frac{\partial x_i}{\partial q_k}dq_k+\frac{\partial x_i}{\partial t}dt;i=1,2,\cdots,3n;k=1,2,\cdots,m
+        \end{equation}
+        \begin{equation}\label{base:12}
+            \dot{x}_i=\frac{\partial x_i}{\partial q_k}\dot{q}_k+\frac{\partial x_i}{\partial t};i=1,2,\cdots,3n;k=1,2,\cdots,m
+        \end{equation}
+        进一步可推得式(\ref{base:4})以及
+        \begin{equation}\label{base:13}
+            \frac{\partial \ddot{x}_i}{\partial \ddot{q}_k}=\frac{\partial x_i}{\partial q_k}
+        \end{equation}
+        系统的动能
+        \begin{equation}\label{base:14}
+            \begin{aligned}
+                T&=\frac{1}{2}m_i\dot{x}_i^2=\frac{1}{2}m_i\left(\frac{\partial x_i}{\partial q_k}\dot{q}_k+\frac{\partial x_i}{\partial t}\right)^2\\
+                &=\frac{1}{2}\sum_{i=1}^{3n}m_i\left(\frac{\partial x_i}{\partial q_k}\frac{\partial x_i}{\partial q_l}\dot{q}_k\dot{q}_l
+                +2\frac{\partial x_i}{\partial q_k}\frac{\partial x_i}{\partial t}\dot{q}_k
+                +\frac{\partial x_i}{\partial t}\frac{\partial x_i}{\partial t}\right)\\
+                &=T_2+T_1+T_0
+            \end{aligned}
+        \end{equation}
+        其中$T_2,T_1,T_0$分别表示广义速度的二次，一次，零次齐次式。Euler定理为
+        \begin{equation}\label{euler:2}
+            \dot{q}_k\frac{\partial T}{\partial \dot{q}_k}=\dot{q}_k\frac{\partial T_2}{\partial \dot{q}_k}+\dot{q}_k\frac{\partial T_2}{\partial \dot{q}_k}+\dot{q}_k\frac{\partial T_2}{\partial \dot{q}_k}=2T_2+T_1
+        \end{equation}
+
+        \subsection{Lagrange乘子法}
+
+	    Lagrange乘子法：$3n$个自由度系统，$s$个约束，选择Lagrange乘子，使得$s$个不独立的虚位移前括号中的项为零，
+        剩余的$3n-s$个独立的虚位移前括号中的项也都等于零。\\
+        系统有$s$个约束
         \begin{equation}
+            f_{\beta}(x_i)=0;\beta=1,2,\cdots,s;i=1,2,\cdots,3n
+        \end{equation}
+        给系统每个质点每一个方向上一个虚位移，则上述约束方程依然成立，即
+        \begin{equation}
+            f_{\beta}(x_i+\delta x_i)=0;\beta=1,2,\cdots,s;i=1,2,\cdots,3n
+        \end{equation}
+        将上式按Taylor级数展开，略去高阶小量得
+        \begin{equation}\label{order-1}
+            \frac{\partial f_{\beta}}{\partial x_i}\delta x_i=0;\beta=1,2,\cdots,s;i=1,2,\cdots,3n
+        \end{equation}
+        根据虚功原理系统平衡条件为
+        \begin{equation}
+            F_i\delta x_i=0
+        \end{equation}
+        式(\ref{order-1})乘以Lagrange乘子$\lambda_{\beta}$与上式相加得
+        \begin{equation}
+            \left(F_i+\lambda_{\beta}\frac{\partial f_{\beta}}{\partial x_i}\right)\delta x_i=0;\beta=1,2,\cdots,s;i=1,2,\cdots,3n
+        \end{equation}
+        根据Lagrange乘子法，选取$s$个Lagrange乘子使得$s$个不独立得虚位移前括号内的项为零，
+        余下的$(3n-s)$个独立的虚位移前括号内项则也为零，于是得
+        \begin{equation}
+            F_i+\lambda_{\beta}\frac{\partial f_{\beta}}{\partial x_i}=0;\beta=1,2,\cdots,s;i=1,2,\cdots,3n
+        \end{equation}
+        该式还需要结合$s$个约束方程才能满足方程数等于未知数个数。则系统方程为
+        \begin{equation}
+            \begin{aligned}
+                F_i+\lambda_{\beta}\frac{\partial f_{\beta}}{\partial x_i}&=0;\beta=1,2,\cdots,s;i=1,2,\cdots,3n\\
+                f_{\beta}(x_i)&=0;\beta=1,2,\cdots,s;i=1,2,\cdots,3n
+            \end{aligned}
+        \end{equation}
+
+        \subsection{Lagrange方程}
+
+        对易关系：对时间的全导数$\frac{d}{dt}$与对广义坐标的偏导数$\frac{\partial}{\partial q_k}$之间的可对易性
+        \begin{equation}\label{commutation:2}
             \frac{\partial}{\partial q_k}\left(\frac{d}{dt}\right)=\frac{d}{dt}\left(\frac{\partial}{\partial q_k}\right)
         \end{equation}
 
-	    \subsubsection{Newton方程推导Lagrange方程}
-	    \subsubsection{d'Alembert方程推导Lagrange方程}
-
-        \subsubsection{Newton方程和d'Alembert方程的区别}
-        Newton方程中的力是所有作用力，包括主动力和约束力。d'Alembert方程中只含有主动力。
-        \begin{equation}
-            L=T-V
+        \subsubsection{Newton方程推导Lagrange方程}
+        
+        将Newton方程投影到广义坐标有
+        \begin{equation*}
+            \left(\frac{dp_i}{dt}-F_i\right)\frac{\partial x_i}{\partial q_k}=0
+        \end{equation*}
+        根据广义力的表达式以及分部积分公式上式可变为
+        \begin{equation}\label{deriv:1}
+            \frac{d}{dt}\left(p_i\frac{\partial x_i}{\partial q_k}\right)-p_i\frac{d}{dt}\frac{\partial x_i}{\partial q_k}=Q_i
+        \end{equation}
+        根据式(\ref{commutation:2})(\ref{base:4})上式可表示为
+        \begin{equation*}
+            \frac{d}{dt}\left(m_i\dot{x}_i\frac{\partial \dot{x}_i}{\partial \dot{q}_k}\right)-p_i\frac{\partial}{\partial q_k}\frac{dx_i}{dt}=Q_i
+        \end{equation*}
+        \begin{equation*}
+            \frac{d}{dt}\left(m_i\dot{x}_i\frac{\partial \dot{x}_i}{\partial \dot{q}_k}\right)-m_i\dot{x}_i\frac{\partial\dot{x}_i}{\partial q_k}=Q_i
+        \end{equation*}
+        \begin{equation}\label{Lagrange:1}
+            \frac{d}{dt}\left(\frac{\partial T}{\partial \dot{q}_k}\right)-\frac{\partial T}{\partial q_k}=Q_i
         \end{equation}
 
-        \begin{equation}
+        \subsubsection{d'Alembert方程推导Lagrange方程}
+        
+        用广义虚位移代替d'Alembert位形空间下虚位移，并根据广义力的定义有
+        \begin{equation*}
+            \left(F_i-\frac{dp_i}{dt}\right)\frac{\partial x_i}{\partial q_k}\delta q_k=0
+        \end{equation*}
+        \begin{equation}\label{deriv:2}
+            \left(Q_k-\frac{dp_i}{dt}\frac{\partial x_i}{\partial q_k}\right)\delta q_k=0
+        \end{equation}
+        类似从Newton方程推导，使用分部积分公式以及(\ref{base:4})可得
+        \begin{equation}\label{deriv:3}
+            -\left(\frac{d}{dt}\left(\frac{\partial T}{\partial \dot{q}_k}\right)-\frac{\partial T}{\partial q_k}-Q_i\right)\delta q_k=0
+        \end{equation}
+        由于广义坐标是独立的，因此括号内容为零，即Lagrange方程。
+
+        当主动力为保守力时，有
+        \begin{equation}\label{conservation}
+            Q_k=-\frac{\partial V}{\partial q_k}
+        \end{equation}
+        带入Lagrange方程得
+        \begin{equation}\label{Lagrange:2}
+            \frac{d}{dt}\left(\frac{\partial T}{\partial \dot{q}_k}\right)-\frac{\partial T}{\partial q_k}=-\frac{\partial V}{\partial q_k}
+        \end{equation}
+        一般势能与速度无关，即$\frac{\partial V}{\partial \dot{q}_k}=0$。定义Lagrangian
+        \begin{equation}\label{Lagrangian}
+            L=T-V
+        \end{equation}
+        可得主动力为保守力时Language方程
+        \begin{equation}\label{Lagrange-conserv}
+            \frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}_k}\right)-\frac{\partial L}{\partial q_k}=0
+        \end{equation}
+        由于势能只是广义坐标得函数，广义动量又可以定义为
+        \begin{equation}\label{general-moment}
+            p_k=\frac{\partial L}{\partial \dot{q}_k}
+        \end{equation}
+
+        当主动力中既有保守力又有非保守力时，保守力依然用$\frac{\partial V}{\partial q_k}$表示的函数，
+        非保守力用$Q_K$表示，Lagrange方程为
+        \begin{equation}\label{Lagrange-nonconserv}
             \frac{d}{dt}\left(\frac{\partial L}{\partial \dot{q}_k}\right)-\frac{\partial L}{\partial q_k}=Q_k
         \end{equation}
 
@@ -78,10 +251,9 @@
             p_k=\frac{\partial L}{\partial \dot{q}_k}=const
         \end{equation}
 
-        \subsubsection{广义能量积分}
+        \subsubsection{稳定情况下广义能量积分}
 
-        \noindent 1) 稳定约束下的Hamilton积分\\
-        $L$与$t$无关，则有
+        稳定约束下的Hamilton积分，$L$与$t$无关，则有
         \begin{equation}
             \begin{aligned}
                 \frac{dL}{dt}&=\frac{\partial L}{\partial q_k}\dot{q}_k+\frac{\partial L}{\partial q_k}\ddot{q}_k
@@ -100,7 +272,9 @@
         \end{equation}
 
         \subsection{变分问题Euler方程}
+
         \subsubsection{Euler-Lagrange方程}
+
         \begin{equation}
             J=\int_A^Bf(x,y,\dot{y})dx
         \end{equation}
@@ -163,7 +337,7 @@
         \begin{equation}\label{mE-L}
             \frac{\partial f}{\partial y_i}-\frac{d}{dx}\left(\frac{\partial f}{\partial \dot{y}_i}\right)=0
         \end{equation}
-        记$\mathbf{y}=[y_1,y_2,\cdots,y_n]^T$,$\mathbf{\dot{y}}=[\dot{y}_1,\dot{y}_2,\cdots,\dot{y}_n]^T$。上式写成向量的形式为
+        记$\mathbf{y}=[y_1,y_2,\cdots,y_n]^T$,$\dot{\mathbf{y}}=[\dot{y}_1,\dot{y}_2,\cdots,\dot{y}_n]^T$。上式写成向量的形式为
         \begin{equation}\label{vE-L}
             \frac{\partial f}{\partial \mathbf{y}}-\frac{d}{dx}\left(\frac{\partial f}{\partial \dot{\mathbf{y}}}\right)=\mathbf{0}
         \end{equation}
@@ -174,6 +348,64 @@
         \begin{equation}\label{vLagrange}
             \frac{\partial L}{\partial \mathbf{q}}-\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{\mathbf{q}}}\right)=\mathbf{0}
         \end{equation}
+
+        \section{Hamilton力学}
+
+        \subsection{Legendre transformation\cite{sciencenet}}
+        Legendre(1752-1833), 法国数学家,天文学家，与Lagrange同事。
+        \begin{equation}\label{func}
+            F(x_1,x_2,\cdots,x_n)=0
+        \end{equation}
+        \begin{equation}\label{dual_1}
+            y_i=\frac{\partial F}{\partial x_i}
+        \end{equation}
+        使用Einstein求和约定，定义如下变换式(Einstein summation convention)
+        \begin{equation}\label{transform}
+            G=x_iy_i-F
+        \end{equation}
+        式(\ref{transform})的全微分为
+        \begin{equation*}
+            \begin{aligned}
+                dG&=(x_idy_i+y_idx_i)-\frac{\partial F}{\partial x_i}dx_i\\
+                &=x_idy_i+\left(y_i-\frac{\partial F}{\partial x_i}\right)dx_i\\
+                &=x_idy_i=\frac{\partial G}{\partial y_i}dy_i
+            \end{aligned}
+        \end{equation*}
+        可得
+        \begin{equation}\label{dual_2}
+            x_i=\frac{\partial G}{\partial y_i}
+        \end{equation}
+        由函数关系(\ref{func})(\ref{dual_1})(\ref{dual_2})确定函数与变量的关系，
+        式(\ref{transform})确定两个函数$F,G$间的关系。$x_i,y_i$为对偶变量。
+
+        \subsection{Hamiltonian}
+
+        根据广义动量的定义式(\ref{general-moment})反解出来$\dot{q}_i$为$p_i,q_i$表示的函数，引进以$p,q$为自变量的函数$H$如下式
+        \begin{equation}\label{Hamiltonian}
+            H(p_k,q_k,t)=p_k\dot{q}_k-L
+        \end{equation}
+        利用式(\ref{Lagrange-conserv})(\ref{general-moment})可得$H$的全微分为
+        \begin{equation*}
+           \begin{aligned}
+               dH&=\frac{\partial H}{\partial p_k}dp_k+\frac{\partial H}{\partial q_k}dq_k\\
+               &=\left( \dot{q}_k+p_j\frac{\partial \dot{q}_j}{\partial p_k}-\frac{\partial L}{\partial \dot{q}_j}\frac{\partial \dot{q}_j}{\partial p_k} \right)dp_k
+               +\left( p_j\frac{\partial \dot{q}_j}{\partial q_k}-\frac{\partial L}{\partial q_k}-\frac{\partial L}{\partial \dot{q}_j}\frac{\partial \dot{q}_j}{\partial q_k}\right)dq_k\\
+               &=\left( \dot{q}_k+p_j\frac{\partial \dot{q}_j}{\partial p_k}-p_j\frac{\partial \dot{q}_j}{\partial p_k} \right)dp_k
+               +\left( p_j\frac{\partial \dot{q}_j}{\partial q_k}-\frac{\partial L}{\partial q_k}-p_j\frac{\partial \dot{q}_j}{\partial q_k}\right)dq_k\\
+               &=\dot{q}_kdp_k-\frac{\partial L}{\partial q_k}dq_k=\dot{q}_kdp_k-\frac{d}{dt}\frac{\partial L}{\partial \dot{q}_k}dq_k\\
+               &=\dot{q}_kdp_k-\frac{dp_k}{dt}dq_k=\dot{q}_kdp_k-\dot{p}_kdq_k
+           \end{aligned}
+        \end{equation*}
+        比较等式两边可得
+        \begin{equation}\label{Hamilton-canonical}
+            \begin{aligned}
+                \dot{q}_k&=\frac{\partial H}{\partial p_k}\\
+                \dot{p}_k&=-\frac{\partial H}{\partial q_k}
+            \end{aligned}
+        \end{equation}
+        式(\ref{Hamiltonian})的变换只将$\dot{q}_k$变为$p_k$而保持自变量$q_k$不变，即只是将部分自变量变为其对偶量。
+        实际上Legendre变换可以将任意个自变量变换为它的对偶量。
+
         % \bibliographystyle{plain}
         \bibliography{cm}
     \end{document}

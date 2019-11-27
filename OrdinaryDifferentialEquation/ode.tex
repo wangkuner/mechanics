@@ -1,0 +1,41 @@
+\documentclass[12pt]{report}
+    % fonts
+    \usepackage{ctex}
+    \usepackage{fontspec}%set fonts
+    % \usepackage{mathptmx}
+    \newfontfamily\cnew{Courier New}
+    \usepackage{amsmath}
+    % \usepackage[notext]{stix}
+    \usepackage{newtxmath}
+    \setmainfont{Times New Roman}
+
+    % paper set
+    \usepackage{geometry}%set paper
+    \geometry{
+        a4paper,
+        total={170mm,257mm},
+        left=20mm,
+        top=20mm,
+    }
+    % set paragraph format
+    %\setlength{\baselineskip}{1.0em}
+    \renewcommand{\baselinestretch}{1.0}
+    % \usepackage{booktabs} % for three-line table
+    % \setlength{\abovetopsep}{3mm}
+    % \setlength{\belowbottomsep}{3mm}
+    \usepackage{array}
+    % date format
+    \usepackage[yyyymmdd]{datetime}
+    \renewcommand{\dateseparator}{.}
+
+    \title{Ordinary Differential Equation}
+    \author{Kun Wang}
+    \date{2019.11.27-\today}
+
+    \begin{document}
+        \maketitle
+        \input{BasicConcept}
+        \input{FirstOrder}
+        \input{HighOrder}
+        \input{Group}
+    \end{document}

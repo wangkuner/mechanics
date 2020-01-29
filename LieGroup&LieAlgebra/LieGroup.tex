@@ -5,6 +5,7 @@
     % \usepackage{mathptmx}
     \newfontfamily\cnew{Courier New}
     \usepackage{amsmath}
+    \newtheorem{definition}{Def}[section]
     % \usepackage[notext]{stix}
     \usepackage{newtxmath}
     \setmainfont{Times New Roman}
@@ -22,38 +23,56 @@
     \renewcommand{\baselinestretch}{1.0}
     % \usepackage{booktabs} % for three-line table
     \usepackage{array}
+    \usepackage[yyyymmdd]{datetime}
+    \renewcommand{\dateseparator}{.}
 
     \title{Learning Notes of Apr 2019}
     \author{Kun Wang}
-    \date{2019年4月}
+    \date{2019.11.30-\today}
 
     \begin{document}
         \maketitle
 
-        \begin{center}
-            \begin{tabular}{|m{16cm}|}
-                \hline
-                stage 1\\
-                \hline
-                \begin{enumerate}
-                    \item The model of the satellite with solar panels.
-                    \item The model of the prismatic deployable trusses.
-                    \item The dynamics of the prismatic deployable trusses.
-                \end{enumerate}\\
-                \hline
-            \end{tabular}
-        \end{center}
-
         \section{Lie Group and Lie Algebra}
-        Group: Set $G$ with composition rule satisfying 4 axioms.
+
+        Algebraic set(Variety): set of solutions to an algebraic equation or system of algebraic equations.
+        The set of zero point of a polynomial is 1 dimension less than the affine space.
+
+        \begin{definition}
+         Group: Set $G$ with a group operation satisfying 4 axioms.
         \begin{enumerate}
            \item closure:$\forall g_1,g_2\in G,g_1g_2\in G$
            \item associativity:$\forall g_1,g_2,g_3\in G,(g_1g_2)g_3=g_1(g_2g_3)$
            \item identity:$\exists e\in G,\forall g\in G, ge=eg=g$
            \item invertibility:$\forall g\in G,\exists g^{-1}\in G, gg^{-1}=g^{-1}g=e$
         \end{enumerate}
-        Lie group: groups with continuty.\\ 
-        \indent 矩阵指数函数
+        \end{definition}
+        Commutative group/Abel group: $\forall g_{1},g_{2}\in G,g_{1}g_{2}=g_{2}g_{1}$.
+        
+        Lie group: groups with continuty.
+
+        Examples:
+        \begin{enumerate}
+            \item $\mathbb{R}^{n}$
+            \item Complex numbers of unit modulus
+            \item Hamilton's quaternions: $q=a+bi+cj+dk$, $i^{2}=j^{2}=k^{2}=-1,\ ijk=-1$, 
+            Conjugate of $q$ is $\bar{q}=a-bi-cj-dk$, $G=\{q|\bar{q}q=1\}$. 
+            group opration is quaternionic multiplication.
+            \item General linear group $GL(n,\mathbb{R})$, 
+            $n$ means the invertible square matrice is of $n$ dimensions. 
+            Group operation is matrix multiplication.
+            \item Special linear group $SL(n)$, $G=\{A|\det(A)=1\}$. Its group manifold is of $n^{2}-1$ dimensions.
+            \item Orthogonal group $O(n)$: preserve the positive definite bilinear form.
+            \item Symplectic group $Sp(2n,\mathbb{R})$: preverse the bilineat anti-symmetric form.
+            \item Unitary group $U(n)$: preserve the Hermitian form. The transformation keep the complex scalars unchangable.
+        \end{enumerate}
+
+        \begin{definition}
+            Homomorphism: differential map $f:G\rightarrow H,\ \forall g_{1},g_{2}\in G,f(g_{1}g_{2})=f(g_{1})f(g_{2})$ 
+        \end{definition}
+
+
+        矩阵指数函数
         \begin{equation*}
             \begin{aligned}
                 e^{At}&=I+At+\frac{(At)^2}{2!}+\frac{(At)^3}{3!}+\dots+\frac{(At)^n}{n!}+\dots\\

@@ -1,0 +1,216 @@
+\chapter{Time-Domain Analysis of Continuous Systems}
+
+\section{Basis of partial differential equations}\label{sec::basis}
+
+常系数二阶偏微分方程
+\begin{equation}
+    a\frac{\partial^{2}f}{\partial x^{2}}+b\frac{\partial^{2}f}{\partial x\partial y}+c\frac{\partial^{2}f}{\partial y^{2}}=0
+\end{equation}
+若$b^{2}-4ac>0$则为双曲线型(hyperbolic)方程;\\
+若$b^{2}-4ac=0$则为抛物线型方程;\\
+若$b^{2}-4ac<0$则为椭圆型方程。
+
+连续体振动问题中的波动方程为
+\begin{equation}\label{eq-1::wave}
+    \frac{\partial^{2}u}{\partial x^{2}}=\frac{1}{c^{2}}\frac{\partial^{2}u}{\partial t^{2}}
+\end{equation}
+其中$c$为波在物质中的传播速度。
+使用分离变量法可求得该微分方程的解。
+
+令$u\left(x,t\right)=X\left(x\right)T\left(t\right)$,带入(\ref{eq-1::wave})得
+$$c^{2}T(t)\frac{\partial^{2}X}{\partial x^{2}}-X(x)\frac{\partial^{2}T}{\partial t^{2}}=0$$
+亦可写为
+$$\frac{1}{X(x)}\frac{\partial^{2}X}{\partial x^{2}}=\frac{1}{c^{2}T(t)}\frac{\partial^{2}T}{\partial t^{2}}$$
+由于等式两边变量不同，等式要成立，则等式两边必须均等于一常数，设为$-\lambda$,则可得
+\begin{equation}\label{eq-1::amplitude}
+    \frac{\partial^{2}X}{\partial x^{2}}+\lambda X\left(x\right)=0
+\end{equation}
+\begin{equation}\label{eq-1::vibration}
+    \frac{\partial^{2}T}{\partial t^{2}}+c^{2}\lambda T\left(x\right)=0
+\end{equation}
+这是两个常系数二阶常微分方程，根据常微分方程理论，式( \ref{eq-1::amplitude} )的通解为
+\begin{table}[h!]
+    \begin{center}
+        \caption{general solution of 2-order ode}
+        \begin{tabular}{cc}
+            \toprule
+            $\lambda$ & $X(x)$\\
+            \midrule
+            $\lambda<0$ & $X(x)=A_{1}e^{\sqrt{-\lambda}x}+A_{2}e^{\sqrt{\lambda}x}$\\
+            $\lambda=0$ & $X(x)=(A_{1}+A_{2}x)$\\
+            $\lambda>0$ & $X(x)=A_{1}\sin\left(\sqrt{\lambda}x\right)+A_{2}\cos\left(\sqrt{\lambda}x\right)$\\
+            \bottomrule
+        \end{tabular}
+    \end{center}
+\end{table}
+对于弦振动问题有约束条件$u(0,t)=0$, $u(l,t)=0$。当$\lambda\le 0$时，
+方程(\ref{eq-1::wave})无非平凡解(不恒等于零的解)。故$\lambda$只能大于0，
+不妨设$\lambda=\left(\omega/c\right)^2$。
+则对于弦振动问题，由方程(\ref{eq-1::amplitude})及边界条件得
+\begin{equation}
+    \sin\left(\frac{\omega l}{c}\right)=0
+\end{equation}
+可得自然频率
+\begin{equation}\label{eq-1::natural_frequency}
+    \omega_{n}=\frac{n\pi c}{l},\ n=1,2,\cdots
+\end{equation}
+方程(\ref{eq-1::amplitude})的解为
+\begin{equation}
+    X_{n}\left(x\right)=A_{n}\sin\frac{n\pi x}{l},\ n=1,2,\cdots
+\end{equation}
+根据式(\ref{eq-1::vibration})(\ref{eq-1::natural_frequency})可得
+\begin{equation}
+    T_{n}\left(t\right)=B_{n}\sin\left(\frac{n\pi c}{l}t+\varphi_{n}\right),\ n=1,2,\cdots
+\end{equation}
+波动方程的解为
+\begin{equation}
+    u\left(x,t\right)=\sum_{n=1}^{\infty} C_{n}\sin\frac{n\pi x}{l}\sin\left(\frac{n\pi c}{l}t+\varphi_{n}\right),\ n=1,2,\cdots
+\end{equation}
+声波由多种单音振动组合而成，连续体的振动也是多种振动的合成，每种振动的波长为$\frac{2l}{n}$,
+振动周期为$\frac{2l}{nc}$,则波速即为$c$。
+
+\section{一维弹性波动方程}
+\subsection{弦的横向自由振动}
+\textbf{assumptions}: The transverse deflection is very small so that the length $l$ of the string 
+and the tension $T$ are constant. The small deflection does not mean the small transverse motion 
+but it meane the small deflection angle is small so $\frac{\partial^2 v}{\partial x^2}$ can be negelected.
+
+假设弦的横向偏转很小，弦上取微元,则其转角$\theta$可近似为$\theta=\sin\theta=\tan\theta$,
+在横向方向上，根据d'Alembert原理可得
+\begin{equation}
+    T\left(\theta+\frac{\partial \theta}{\partial x}\mathrm{d}x\right)-T\theta=\rho\mathrm{d}x\frac{\partial^{2}v}{\partial t^{2}}
+\end{equation}
+$\theta=\tan\theta=\frac{\partial v}{\partial x}$,进一步得
+\begin{equation}
+    \frac{\partial^{2}v}{\partial x^{2}}=\frac{\rho}{T}\frac{\partial^{2}v}{\partial t^{2}}
+\end{equation}
+记$c=\sqrt{T/\rho}$,即得式
+\begin{equation}\label{eq-1::string-wave}
+    \frac{\partial^{2}v}{\partial x^{2}}=\frac{1}{c^{2}}\frac{\partial^{2}v}{\partial t^{2}}
+\end{equation}
+弦两端加上固定约束，即$v(0,t)=0$, $v(l,t)=0$。方程(\ref{eq-1::string-wave})是可使用分离变量法求解。
+根据\ref{sec::basis}节中理论，并设$\lambda=\left(\frac{\omega}{c}\right)^{2}$(对于该问题$\lambda \le 0$无非平凡解)，可得
+\begin{equation}
+    \left\{ \begin{array}{l}
+        X(x) = A\cos \frac{\omega}{c}x + B\sin \frac{\omega}{c}x\\
+        T(t) = C\cos \omega t + D\sin \omega t
+    \end{array}\right.
+\end{equation}
+将边界条件带入，得
+\begin{equation}
+    \left\{ \begin{array}{l}
+        X(0)T(t)=AT(t)=0 \\
+        X(l)T(t)=\left(A\cos \frac{\omega}{c}l + B\sin \frac{\omega}{c}l\right)T(t)=0
+    \end{array}\right.
+\end{equation}
+由于时间的任意性，要求得非平凡解(non-trival solution)，必有
+\begin{equation}
+    \sin \frac{\omega l}{c}=0
+\end{equation}
+即
+\begin{equation}
+    \frac{\omega l}{c}=n\pi
+\end{equation}
+可得固有频率(natrual frequency)
+\begin{equation}
+    \omega_{n}=\frac{n\pi c}{l}
+\end{equation}
+相应的模态振型(mode shape)为
+\begin{equation}
+    \phi_{n}(x)=A_{n}\sin\frac{\omega_{n}}{c}x=A_{n}\sin\frac{n\pi x}{l}
+\end{equation}
+弦振动的解为所有解的线性组合，即
+\begin{equation}
+    \begin{aligned}
+    v(x,t)&=\sum_{n=1}^{\infty}\phi_{n}(x)T_{n}(t)
+    =\sum_{n=1}^{\infty}A_{n}\sin\frac{n\pi x}{l}\left(C\cos \frac{n\pi c}{l} t + D\sin \frac{n\pi c}{l} t\right)\\
+    &=\sum_{n=1}^{\infty}B_{n}\sin\frac{n\pi x}{l}\sin \left(\frac{n\pi c}{l}t+\alpha_{n}\right)
+    \end{aligned}
+\end{equation}
+该解与琴弦振动发出声音由许多单音组合起来类似，每个频率为系统的固有频率，对应的振型为固有振型。
+
+弦上点的振动会带动邻近点的振动，这种振动的传播即为波动。
+弦上每一点的振动频率均相同，所以波传播频率等于振动频率。弦内弹性波的波长为$\lambda_{n}=\frac{2l}{n}$，
+波传播速度为$\frac{\lambda_{n}\omega_{n}}{2\pi}=c$，故$c$为波传播速度。
+
+
+\subsection{弹性杆的轴向自由振动}
+
+取弹性杆内微元，截面处轴向内力为$P$，其惯性力为$\rho A\mathrm{d}x\frac{\partial^{2}u}{\partial x^{2}}$,
+根据d'Alembert原理可得
+\begin{equation}
+    P+\frac{\partial P}{\partial x}\mathrm{d}x-P=\rho A\mathrm{d}x\frac{\partial^{2}u}{\partial x^{2}}
+\end{equation}
+根据应力应变关系$\sigma_x=E\epsilon_x$，又$P=\sigma_{x}A$,
+有$P=EA\epsilon_x=EA\frac{\partial u}{\partial x}$,上式化为
+\begin{equation}\label{eq-1::axial}
+    \frac{\partial^{2}u}{\partial x^{2}}=\frac{\rho}{E}\frac{\partial^{2}u}{\partial x^{2}}
+\end{equation}
+该式与式(\ref{eq-1::string-wave})相同，波在弹性杆中传播速度为$c=\sqrt{E/\rho}$。式(\ref{eq-1::axial})可用分离变量法求解。
+
+在弹性杆两端施加不同的约束，相同的偏微分方程可得到不同的结果。考虑如下三种边界条件
+\begin{enumerate}
+    \item[(1)]两端固定$u(0,t)=0$, $u(l,t)=0$；
+    \item[(2)]一端固定，一端自由，自由端无外力，即无应变，$u(0,t)=0$, $\frac{\partial u}{\partial x}|(l,t)=0$；
+    \item[(3)]两端自由$\frac{\partial u}{\partial x}\|(0,t)=0$, $\frac{\partial u}{\partial x}|(l,t)=0$.
+\end{enumerate}
+
+类似弦振动问题，微分方程的通解为
+\begin{equation}
+    u(x,t)=\left(A\cos \frac{\omega}{c}x + B\sin \frac{\omega}{c}x\right)\sin\left(\omega t + \alpha\right)
+\end{equation}
+
+\noindent 将\textbf{第一种边界条件}带入得
+
+固有频率$$\omega_{n}=\frac{n\pi c}{l},$$
+
+对应模态振型为$$\phi_{n}(x)=A_{n}\sin \frac{n\pi x}{l},$$
+
+方程解为$$u(x,t)=\sum\limits_{n=1}^{\infty}B_{n}\sin\frac{n\pi x}{l}\sin \left(\frac{n\pi c}{l}t+\alpha_{n}\right)$$
+
+\noindent 将\textbf{第二种边界条件}带入得
+
+固有频率$$\omega_{n}=\frac{(2n-1)\pi c}{2l},$$
+
+对应模态振型为$$\phi_{n}(x)=A_{n}\sin \frac{(2n-1)\pi x}{2l},$$
+
+方程解为$$u(x,t)=\sum\limits_{n=1}^{\infty}B_{n}\sin\frac{(2n-1)\pi x}{2l}\sin \left(\frac{(2n-1)\pi c}{2l}t+\alpha_{n}\right)$$
+
+\noindent 将\textbf{第三种边界条件}带入得
+
+固有频率$$\omega_{n}=\frac{n\pi c}{l},$$
+
+对应模态振型为$$\phi_{n}(x)=A_{n}\cos \frac{n\pi x}{l},$$
+
+方程解为$$u(x,t)=\sum\limits_{n=1}^{\infty}B_{n}\cos\frac{n\pi x}{l}\sin \left(\frac{n\pi c}{l}t+\alpha_{n}\right)$$
+
+从以上结果看出，固有频率和固有振型和结构参数和边界条件有关，结构得振动响应不光和结构参数和边界条件有关，还和结构初始状态(初值)有关。
+
+
+\subsection{圆柱杆的自由扭转振动}
+
+假设圆柱杆截面没有翘曲，弹性杆截面扭矩为
+\begin{equation}\label{eq-1::torsion_moment}
+    T=GI_{p}\frac{\partial \theta}{\partial x}
+\end{equation}
+其中$G$为剪切刚度，$I_{p}$为截面扭转惯量。取微元，有
+\begin{equation}\label{eq-1::torsion_equilibrium}
+    \left(T+\frac{\partial T}{\partial x}\mathrm{d}x\right)-T=\rho I_{p}\mathrm{d}x\frac{\partial^{2}\theta}{\partial t^{2}}
+\end{equation}
+将式(\ref{eq-1::torsion_moment})带入式(\ref{eq-1::torsion_equilibrium})中得
+\begin{equation}\label{eq-1::torsion_vibration}
+    \frac{\partial^{2}\theta}{\partial x^{2}}=\frac{\rho}{G}\frac{\partial^{2}\theta}{\partial t^{2}}
+\end{equation}
+则波动传播速度为$c=\sqrt{G/\rho}$。式(\ref{eq-1::torsion_vibration})与式(\ref{eq-1::axial})相同，
+其解也相同。
+
+\section{Euler-Bernoulli梁的横向自由振动}
+
+\section{方形薄板的自由振动}
+
+\section{模态振型的特性}
+
+\subsection{Orthogonality}
+\subsection{Scaling}
+\subsection{Expasion theorm}
+\subsection{Rayley quotient}

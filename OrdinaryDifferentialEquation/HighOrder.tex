@@ -1,1 +1,50 @@
 \chapter{The high order ODE}
+
+线性齐次二阶常系数常微分方程如
+\begin{equation}\label{eq3:homo-second}
+    y''+ay'+by=0
+\end{equation}
+
+假定其指数解为$y=e^{\lambda x}$，带入式(\ref{eq3:homo-second})中得
+\begin{equation*}
+    (\lambda^{2}+a\lambda+b)e^{\lambda x}=0
+\end{equation*}
+
+由于$e^{\lambda x}$不恒等于0，得如下方程
+
+\begin{equation}\label{eq3:eigen}
+    \lambda^{2}+a\lambda+b=0
+\end{equation}
+
+式(\ref{eq3:eigen})为微分方程(\ref{eq3:homo-second})的特征方程。
+
+式(\ref{eq3:eigen})的判别式$\Delta=a^{2}-4b$,
+
+$\Delta>0$时方程(\ref{eq3:eigen})有两个实根$\lambda_{1}$,$\lambda_{2}$，
+则$y=e^{\lambda_{1}x}$,$y=e^{\lambda_{2}x}$均为微分方程的解，且两个解不相关。
+根据常微分方程解的理论，方程(\ref{eq3:homo-second})的通解为
+
+\begin{equation}
+    y=A_{1}e^{\lambda_{1}x}+A_{2}e^{\lambda_{2}x}
+\end{equation}
+
+$\Delta=0$时方程(\ref{eq3:eigen})有两个重实根$\lambda_{1}=\lambda_{2}$，
+则$y=e^{\lambda_{1}x}$,$y=e^{\lambda_{2}x}$均为微分方程的解，且两个解相关。
+设方程另一不相关解为$y=u(x)e^{\lambda_{1}x}$，带入方程(\ref{eq3:homo-second})得
+$$u''+(2\lambda_{1}+a)u'+(\lambda_{1}^{2}+a\lambda_{1}+b)u=0$$
+由于$\lambda_{1}$为$\lambda^{2}+a\lambda +b=0$的重根，
+故$(2\lambda_{1}+a)=0$,$(\lambda_{1}^{2}+a\lambda_{1}+b)=0$,则$u''=0$,取特解$u(x)=x$,
+则方程(\ref{eq3:homo-second})的通解为
+
+\begin{equation}
+    y=(A_{1}+A_{2}x)e^{\lambda_{1}x}
+\end{equation}
+
+$\Delta<0$时方程(\ref{eq3:eigen})有两个复根$\lambda_{1}=\alpha+\beta i$,
+$\lambda_{2}=\alpha-\beta i$，
+则$y=e^{\lambda_{1}x}$,$y=e^{\lambda_{2}x}$均为微分方程的解，
+根据欧拉公式，方程(\ref{eq3:homo-second})的通解可化为
+
+\begin{equation}
+    y=e^{\alpha x}(A_{1}\cos \beta x+A_{2}\sin \beta x)
+\end{equation}

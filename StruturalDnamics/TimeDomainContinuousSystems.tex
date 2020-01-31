@@ -152,7 +152,7 @@ $\theta=\tan\theta=\frac{\partial v}{\partial x}$,进一步得
 \begin{enumerate}
     \item[(1)]两端固定$u(0,t)=0$, $u(l,t)=0$；
     \item[(2)]一端固定，一端自由，自由端无外力，即无应变，$u(0,t)=0$, $\frac{\partial u}{\partial x}|(l,t)=0$；
-    \item[(3)]两端自由$\frac{\partial u}{\partial x}\|(0,t)=0$, $\frac{\partial u}{\partial x}|(l,t)=0$.
+    \item[(3)]两端自由$\frac{\partial u}{\partial x}|(0,t)=0$, $\frac{\partial u}{\partial x}|(l,t)=0$.
 \end{enumerate}
 
 类似弦振动问题，微分方程的通解为
@@ -205,12 +205,259 @@ $\theta=\tan\theta=\frac{\partial v}{\partial x}$,进一步得
 其解也相同。
 
 \section{Euler-Bernoulli梁的横向自由振动}
+Assumptions:
+\begin{enumerate}
+    \item[(1)] The cross-section is infinitely rigid in its own plane.
+    \item[(2)] The cross-section of a beam remains plane after deformation.
+    \item[(3)] The cross-section remains normal to the deformed neutral axis of the beam.
+\end{enumerate}
+
+Equilibrium equation of the deflection direciton
+\begin{equation}\label{eq-1::beam-equil}
+    -Q - \frac{\partial Q}{\partial x}\mathrm{d}x + Q - \rho A(x)\mathrm{d}x\frac{\partial^{2}v}{\partial t^{2}} = 0
+\end{equation}
+Constitution law
+\begin{equation}\label{eq-1::beam-constitution}
+    M = EI(x)\frac{\partial^{2}v}{\partial x^{2}}
+\end{equation}
+Equilibrium equation of moment
+\begin{equation}\label{eq-1::beam-moment-1}
+    Q\mathrm{d}x + M - \left(M + \frac{\partial M}{\partial x}\right) = 0
+\end{equation}
+The following relationship between the shear force and the moment can be derived from Eq. (\ref{eq-1::beam-moment-1}) 
+\begin{equation}\label{eq-1::beam-moment-2}
+    Q = \frac{\partial M}{\partial x}
+\end{equation}
+Substituting Eq. (\ref{eq-1::beam-constitution}) and Eq. (\ref{eq-1::beam-moment-2}) into Eq. (\ref{eq-1::beam-equil}), 
+the equilibrium equation of the differential element with respect to the deflection $v$ becomes
+\begin{equation}\label{eq-1::beam-equil-2}
+    EI\frac{\partial ^{4} v}{\partial x^{4}} + \rho A\frac{\partial^{2}v}{\partial t^{2}} = 0
+\end{equation}
+Eq. (\ref{eq-1::beam-equil-2}) is a separable linear fourth-order partial differential equation. 
+The form of the solution would be 
+\begin{equation}\label{eq-1::form-solution}
+    v(x,t)=X(x)\sin\left(\omega t + \alpha\right)
+\end{equation}
+Substituting Eq.(\ref{eq-1::form-solution}) into Eq.(\ref{eq-1::beam-equil-2}) 
+can obtain the following ordinary differential equation 
+\begin{equation}\label{eq-1::beam-ode}
+    \frac{\mathrm{d}^{4} X}{\mathrm{d}x^{4}} - \frac{\rho A\omega^{2}}{EI}X(x) = 0
+\end{equation}
+The characteristic equation of Eq. (\ref{eq-1::beam-ode}) is 
+\begin{equation}\label{eq-1::beam-character}
+    \bar{\lambda}^{4} - \frac{\rho A\omega^{2}}{EI} = 0
+\end{equation}
+Roots for the characteristic equation are $\pm\lambda, \pm\lambda i$, with 
+\begin{equation}\label{eq-1::beam-eigen}
+    \lambda = \left(\frac{\rho A\omega^{2}}{EI}\right)^{\frac{1}{4}}
+\end{equation}
+The generalized form of solutions of Eq. (\ref{eq-1::beam-ode}) is 
+\begin{equation}\label{eq-1::general-solution}
+    X(x) = A_{1}e^{\lambda x} + A_{2}e^{-\lambda x} + A_{3}e^{\lambda xi} + A_{4}e^{-\lambda xi} 
+\end{equation}
+Based on the Euler formula, Eq. (\ref{eq-1::general-solution}) can be expressed by the linear combination 
+of the trigonometric and hyperbolic functioons as 
+\begin{equation}\label{eq-1::general-solution-2}
+    X(x) = B_{1}\sin \lambda x + B_{2}\cos \lambda x + B_{3}\sinh \lambda x + B_{4}\cosh \lambda x 
+\end{equation}
+
+考虑三类边界条件
+\begin{enumerate}
+    \item[(1)] 简支，位移和弯矩为0，$v(x,t)=0$, $\frac{\partial^{2} v}{\partial x^{2}}|_{(x,t)}=0$；
+    \item[(2)] 固定，位移和转角为0，$v(x,t)=0$, $\frac{\partial v}{\partial x}|_{(x,t)}=0$；
+    \item[(3)] 自由，剪力和弯矩为0，$\frac{\partial^{3} v}{\partial x^{3}}|_{(x,t)}=0$, 
+                $\frac{\partial^{2} v}{\partial x^{2}}|_{(x,t)}=0$.
+\end{enumerate}
+
+不同的边界条件组合，研究如下四种情形梁的自由振动。
+
+\subsection{Simple supported beams}
+boundary conditions: $v(0,t)=v(l,t)=0$, 
+$\frac{\partial^{2} v}{\partial x^{2}}|_{(0,t)}=\frac{\partial^{2} v}{\partial x^{2}}|_{(l,t)}=0$. 
+
+将边界条件带入式(\ref{eq-1::general-solution-2})得
+\begin{equation}
+    \begin{aligned}
+        \left\{\begin{array}{l}
+            B_{2} + B_{4} = 0\\
+            -\lambda^{2}B_{2} + \lambda^{2}B_{4} = 0\\
+            B_{1}\sin \lambda l + B_{3}\sinh \lambda l = 0\\
+            -\lambda^{2}B_{1}\sin \lambda l + \lambda^{2}B_{3}\sinh \lambda l = 0
+        \end{array}\right.
+    \end{aligned}
+\end{equation}
+根据该方程组要想获得非平凡解，要求其系数矩阵行列式为0，可得
+\begin{equation}
+    \sin \lambda l =0
+\end{equation}
+即要求
+\begin{equation}
+    \lambda_{n} = \frac{n\pi}{l}
+\end{equation}
+结合式(\ref{eq-1::beam-eigen})可得固有频率
+\begin{equation}
+    \omega_{n}=\lambda_{n}^{2}\sqrt{\frac{EI}{\rho A}}
+\end{equation}
+解得$B_{2}=B_{3}=B_{4}=0$，模态振型为
+\begin{equation}
+    \phi_{n}(x)=A_{n}\sin\frac{n\pi x}{l}
+\end{equation}
+
+\subsection{Cantilever beams}
+
+boundary conditions: $v(0,t)=\frac{\partial v}{\partial x}|_{(0,t)}=0$, 
+$\frac{\partial^{3} v}{\partial x^{3}}|_{(l,t)}=\frac{\partial^{2} v}{\partial x^{2}}|_{(l,t)}=0$. 
+
+将边界条件带入式(\ref{eq-1::general-solution-2})得
+\begin{equation}
+    \begin{aligned}
+        \left\{\begin{array}{l}
+            B_{2} + B_{4} = 0\\
+            \lambda B_{1} + \lambda B_{3} = 0\\
+            -\lambda^{2}B_{1}\sin \lambda l - \lambda^{2}B_{2}\cos \lambda l + \lambda^{2}B_{3}\sinh \lambda l + \lambda^{2}B_{4}\cosh \lambda l= 0\\
+            -\lambda^{3}B_{1}\cos \lambda l + \lambda^{3}B_{2}\sin \lambda l + \lambda^{3}B_{3}\cosh \lambda l + \lambda^{3}B_{4}\sinh \lambda l= 0
+        \end{array}\right.
+    \end{aligned}
+\end{equation}
+系数矩阵行列式为0，可得
+\begin{equation}
+    \cos \lambda l \cosh \lambda l +1=0
+\end{equation}
+该方程为超越方程，需借助于数值算法求得数值解，近似解为
+$\lambda_{1}l\approx1.875$, $\lambda_{2}l\approx4.694$, $\lambda_{3}l\approx 7.855$, 
+$\lambda_{n}l\approx\left(n-\frac{1}{2}\right)$ when $n\ge 4$.
+模态振型为
+\begin{equation}
+    \phi_{n}(x)=A_{n}\left[\cosh\lambda_{n}x - \cos\lambda_{n}x - 
+    \frac{\cos\lambda_{n}l + \cosh\lambda_{n}l}{\sin\lambda_{n}l + \sinh\lambda_{n}l}
+    \left(\sinh\lambda_{n}x - \sin\lambda_{n}x\right)\right]    
+\end{equation}
+
+\subsection{Fixed-Fixed beams}
+
+boundary conditions: $v(0,t)=v(l,t)=0$, 
+$\frac{\partial v}{\partial x}|_{(0,t)}=\frac{\partial v}{\partial x}|_{(l,t)}=0$. 
+
+将边界条件带入式(\ref{eq-1::general-solution-2})得
+\begin{equation}
+    \begin{aligned}
+        \left\{\begin{array}{l}
+            B_{2} + B_{4} = 0\\
+            \lambda B_{1} + \lambda B_{3} = 0\\
+            B_{1}\sin \lambda l + B_{2}\cos \lambda l + B_{3}\sinh \lambda l + B_{4}\cosh \lambda l= 0\\
+            B_{1}\cos \lambda l - B_{2}\sin \lambda l + B_{3}\cosh \lambda l + B_{4}\sinh \lambda l= 0
+        \end{array}\right.
+    \end{aligned}
+\end{equation}
+系数矩阵行列式为0，可得
+\begin{equation}\label{eq-1::fixed-fixed}
+    \cos \lambda l \cosh \lambda l - 1=0
+\end{equation}
+该方程为超越方程，需借助于数值算法求得数值解，近似解为
+$\lambda_{1}l\approx 4.730$, $\lambda_{2}l\approx 7.853$,  
+$\lambda_{n}l\approx \left(n + \frac{1}{2}\right)$ when $n\ge 3$.
+模态振型为
+\begin{equation}
+    \phi_{n}(x)=A_{n}\left[\cos\lambda_{n}x - \cosh\lambda_{n}x - 
+    \frac{\cos\lambda_{n}l - \cosh\lambda_{n}l}{\sin\lambda_{n}l - \sinh\lambda_{n}l}
+    \left(\sinh\lambda_{n}x \sin\lambda_{n}x\right)\right]    
+\end{equation}
+
+\subsection{Free-free beams}
+
+boundary conditions: $\frac{\partial^{3} v}{\partial x^{3}}|_{(0,t)}=\frac{\partial^{2} v}{\partial x^{2}}|_{(0,t)}=0$, 
+$\frac{\partial^{3} v}{\partial x^{3}}|_{(l,t)}=\frac{\partial^{2} v}{\partial x^{2}}|_{(l,t)}=0$. 
+
+将边界条件带入式(\ref{eq-1::general-solution-2})得
+\begin{equation}
+    \begin{aligned}
+        \left\{\begin{array}{l}
+            -\lambda^{2}B_{2} + \lambda^{2}B_{4} = 0\\
+            -\lambda^{3}B_{1} + \lambda^{3} B_{3} = 0\\
+            -\lambda^{2}B_{1}\sin \lambda l - \lambda^{2}B_{2}\cos \lambda l + \lambda^{2}B_{3}\sinh \lambda l + \lambda^{2}B_{4}\cosh \lambda l= 0\\
+            -\lambda^{3}B_{1}\cos \lambda l + \lambda^{3}B_{2}\sin \lambda l + \lambda^{3}B_{3}\cosh \lambda l + \lambda^{3}B_{4}\sinh \lambda l= 0
+        \end{array}\right.
+    \end{aligned}
+\end{equation}
+系数矩阵行列式为0，可得
+\begin{equation}
+    \cos \lambda l \cosh \lambda l - 1=0
+\end{equation}
+该方程与式(\ref{eq-1::fixed-fixed})相同，其解也就相同。
+模态振型为
+\begin{equation}
+    \phi_{n}(x)=A_{n}\left[\cos\lambda_{n}x + \cosh\lambda_{n}x - 
+    \frac{\cos\lambda_{n}l - \cosh\lambda_{n}l}{\sin\lambda_{n}l - \sinh\lambda_{n}l}
+    \left(\sin\lambda_{n}x + \sinh\lambda_{n}x\right)\right]    
+\end{equation}
 
 \section{方形薄板的自由振动}
 
 \section{模态振型的特性}
 
 \subsection{Orthogonality}
+
+\begin{equation}
+    \int_{0}^{l}\rho A\phi_{r}\phi_{s}\mathrm{d}x=0,\ r\neq s.
+\end{equation}
+
 \subsection{Scaling}
+
+modal mass
+\begin{equation}\label{eq-1::model-mass}
+    M_{r}=\int_{0}^{l}\rho A\bar{\phi}_{r}^{2}\mathrm{d}x=1,
+\end{equation}
+where $\bar{\phi}_{r}=c\phi$ is the normalized mode shape. $c$ is the scaling factor and 
+\begin{equation}
+    c=\sqrt{\frac{1}{\int_{0}^{l}\rho A\phi_{r}^{2}\mathrm{d}x}}
+\end{equation}
+
+modal stiffness
+\begin{equation}\label{eq-1::modal-stiffness}
+    K_{r}=\int_{0}^{l}EI\left(\frac{\mathrm{d}^{2}\phi_{r}}{\mathrm{d}x^{2}}\right)^{2}\mathrm{d}x
+\end{equation}
+
+\begin{equation}\label{eq-1::relation-mass-stiffness}
+    \omega_{n}=\frac{K_{r}}{M_{r}}
+\end{equation}
+
 \subsection{Expasion theorm}
-\subsection{Rayley quotient}
+
+在前几节已经得到张紧弦，Euler-Bernoulli梁，方形薄板自由振动的模态振型。
+对于任意函数$V(x)$，如果其满足如下条件
+\begin{enumerate}
+    \item[(1)] 与一模态振型函数集满足相同的边界条件；
+    \item[(2)] $EI\left(\mathrm{d}^{4}V/\mathrm{d}x^{4}\right)$是连续函数。
+\end{enumerate}
+则$V(x)$可表示为收敛级数的形式。
+\begin{equation}\label{eq-1::expansion}
+    V(x)=\sum_{r=1}^{\infty}q_{r}\phi_{r}
+\end{equation}
+其中
+\begin{equation}
+    q_{r}=\frac{\int_{0}^{l}\rho AV(x)\phi_{r}\mathrm{d}x}{\int_{0}^{l}\rho A\phi_{r}^{2}\mathrm{d}x}
+\end{equation}
+亦即模态坐标。
+
+\subsection{Rayleigh quotient}
+
+定义Rayleigh quotient:
+\begin{equation}\label{eq-1::Rayleigh-quotient}
+    R(V)=\frac{\int_{0}^{l}EI\left(\frac{\mathrm{d}^{2}V}{\mathrm{d}x^{2}}\right)^{2}\mathrm{d}x}
+    {\int_{0}^{l}\rho AV^{2}\mathrm{d}x}
+\end{equation}
+根据模态振型的正交性，模态刚度的正交性，以及式(\ref{eq-1::relation-mass-stiffness})(\ref{eq-1::expansion})，可得
+\begin{equation}
+    \begin{aligned}
+        R(V)&=\frac{\sum_{r=1}^{\infty}q_{r}^{2}\omega_{r}^{2}}{\sum_{r=1}^{\infty}q_{r}^{2}}\\
+        &=\omega_{1}^{2}\frac{1 + \sum_{r=2}^{\infty}\left(\frac{q_{r}}{q_{1}}\right)^{2}
+        \left(\frac{\omega_{r}}{\omega_{1}}\right)^{2}}{1 + \sum_{r=2}^{\infty}\left(\frac{q_{r}}{q_{1}}\right)^{2}}
+    \end{aligned}
+\end{equation}
+由于基频$\omega_{1}$最小，$\omega_{n+1}>\omega_{n}$，故
+\begin{equation}\label{eq-1::upper-bound}
+    R(V)\ge \omega_{1}^{2}
+\end{equation}
+
+式(\ref{eq-1::upper-bound})表示Rayleigh商是基频的上界，当$q_{r}=0,r>1$时取等号，此时$V(x)$即为基频模态振型。
+如果可以选取适当的函数$V(x)$使其与基频模态振型接近，那么就可以近似估计基频的值。

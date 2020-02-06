@@ -393,6 +393,136 @@ $\frac{\partial^{3} v}{\partial x^{3}}|_{(l,t)}=\frac{\partial^{2} v}{\partial x
 
 \section{方形薄板的自由振动}
 
+Kinematic equations
+
+\noindent Kirchhoff Assumptions:
+\begin{enumerate}
+    \item[(1)] The normal material line to the neutral plane is infinitely rigid along its own, which means that the length of the material line is constant.
+    \item[(2)] The normal material line to the neutral plane remains a straight line after deformation.
+    \item[(3)] The straight normal material line remains normal to the deformed neutral plane.
+\end{enumerate}
+根据假设(1), 垂直于中性面的应变为0，即$\epsilon_{z}=\frac{\partial w}{\partial z}=0$. 
+所以位移$w$与物质坐标$z$无关。即
+\begin{equation}
+    w(x,y,z)=\bar{w}(x,y,z)
+\end{equation}
+根据假设2，面内位移可表示为
+\begin{equation}
+    \begin{aligned}
+        u(x,y,z)=\bar{u}(x,y)+z\theta_{2}(x,y)\\
+        v(x,y,z)=\bar{v}(x,y)-z\theta_{1}(x,y)
+    \end{aligned}
+\end{equation}
+其中$\theta_{1}$, $\theta_{2}$分别为中性面法线绕$x$, $y$轴的偏转角。
+根据假设(3)，则有
+\begin{equation}
+    \theta_{1}(x,y)=\frac{\partial w}{\partial y},\ \theta_{2}=-\frac{\partial w}{\partial x}.
+\end{equation}
+几何方程
+
+\begin{equation}
+    \begin{aligned}
+        \epsilon_{x}&=\frac{\partial u}{\partial x}=\frac{\partial \bar{u}}{\partial x}-z\frac{\partial^{2}\bar{w}}{\partial x^{2}}\\
+        \epsilon_{y}&=\frac{\partial v}{\partial y}=\frac{\partial \bar{v}}{\partial y}-z\frac{\partial^{2}\bar{w}}{\partial y^{2}}\\
+        \gamma_{xz}&=\frac{\partial u}{\partial z}+\frac{\partial w}{\partial x}=\frac{\partial \bar{u}}{\partial z}+\theta_{2}+\frac{\partial w}{\partial x}=0\\
+        \gamma_{yz}&=\frac{\partial v}{\partial z}+\frac{\partial w}{\partial y}=\frac{\partial \bar{v}}{\partial z}-\theta_{1}+\frac{\partial w}{\partial y}=0\\
+        \gamma_{xy}&=\frac{\partial u}{\partial y}+\frac{\partial v}{\partial x}=\frac{\partial \bar{u}}{\partial y}+\frac{\partial \bar{v}}{\partial x}-2z\frac{\partial^{2}\bar{w}}{\partial x\partial y}
+    \end{aligned}
+\end{equation}
+纯弯曲时可忽略面内应变，即$\partial\bar{u}/\partial x=0$, $\partial\bar{u}/\partial y=0$, 
+$\partial\bar{v}/\partial x=0$, $\partial\bar{v}/\partial y=0$。 则有
+\begin{equation}\label{eq-1::geometric-equation}
+    \epsilon_{x}=-z\frac{\partial^{2}\bar{w}}{\partial x^{2}},\ 
+    \epsilon_{y}=-z\frac{\partial^{2}\bar{w}}{\partial y^{2}},\ 
+    \gamma_{xy}=-2z\frac{\partial^{2}\bar{w}}{\partial x\partial y}
+\end{equation}
+
+本构方程
+\begin{equation}
+    \begin{aligned}
+        \sigma_{x}&=-\frac{Ez}{1-\mu^{2}}\left(\frac{\partial^{2}\bar{w}}{\partial x^{2}}+\mu\frac{\partial^{2}\bar{w}}{\partial y^{2}}\right)\\
+        \sigma_{y}&=-\frac{Ez}{1-\mu^{2}}\left(\frac{\partial^{2}\bar{w}}{\partial y^{2}}+\mu\frac{\partial^{2}\bar{w}}{\partial x^{2}}\right)\\
+        \tau_{xy}&=-\frac{Ez}{1-\mu^{2}}\frac{\partial^{2}\bar{w}}{\partial x\partial y}
+    \end{aligned}
+\end{equation}
+取微元，有
+\begin{equation}\label{eq-1::force-stress}
+    \begin{aligned}
+        M_{x}&=\int_{-\frac{h}{2}}^{\frac{h}{2}}\sigma_{x}z\mathrm{d}z=-D\left(\frac{\partial^{2}\bar{w}}{\partial x^{2}}+\mu\frac{\partial^{2}\bar{w}}{\partial y^{2}}\right)\\
+        M_{y}&=\int_{-\frac{h}{2}}^{\frac{h}{2}}\sigma_{y}z\mathrm{d}z=-D\left(\frac{\partial^{2}\bar{w}}{\partial y^{2}}+\mu\frac{\partial^{2}\bar{w}}{\partial x^{2}}\right)\\
+        M_{xy}&=-(1-\mu)D\frac{\partial^{2}\bar{w}}{\partial x\partial y}
+    \end{aligned}
+\end{equation}
+其中$$D=\frac{Eh^{3}}{12(1-\mu^{2})}$$.
+对微元列平衡方程
+\begin{equation}
+    \begin{aligned}
+        \sum F_z=0\\
+        \sum M_x=0\\
+        \sum M_y=0
+    \end{aligned}
+\end{equation}
+可得
+\begin{equation}
+    \begin{aligned}
+        \frac{\partial M_{xy}}{\partial x} + \frac{\partial M_{y}}{\partial y}&=0\\
+        \frac{\partial M_{xy}}{\partial y} + \frac{\partial M_{x}}{\partial x}&=0\\
+        \frac{\partial Q_{x}}{\partial x} + \frac{\partial Q_{y}}{\partial y} + \rho h\frac{\partial^{2} \bar{w}}{\partial t^{2}}&=0
+    \end{aligned}
+\end{equation}
+将式(\ref{eq-1::force-stress})带入上式中得
+\begin{equation}\label{eq-1::plate-vibration}
+    D\left(\frac{\partial^{4}\bar{w}}{\partial x^{4}} + 
+    2\frac{\partial^{4}\bar{w}}{\partial x^{2}\partial y^{2}} + 
+    \frac{\partial^{4}\bar{w}}{\partial y^{4}}\right) + 
+    \rho h\frac{\partial^{2} \bar{w}}{\partial t^{2}} =0
+\end{equation}
+该方程也可用分离变量法求解。
+
+\noindent 边界条件
+\begin{enumerate}
+    \item[(1)] 简支边。位移和弯矩为0，即$w=0$, $M_{n}=0$。
+    \item[(2)] 固定边。位移和转角为0，即$w=0$, $\partial w/\partial n=0$。
+    \item[(3)] 自由边。剪力和弯矩为0，即$M_{n}=0$, $Q_{n}-\frac{\partial M_{ns}}{\partial s}=0$。
+\end{enumerate}
+
+方程(\ref{eq-1::plate-vibration})的通解形式为
+\begin{equation}
+    \bar{w}(x,y,t)=\bar{W}(x,y)e^{\omega t i}
+\end{equation}
+\begin{equation}
+    \begin{aligned}
+        \bar{W}(x,y)=&A_{1}\sin\alpha x\sin\beta y + A_{2}\sin\alpha x\cos\beta y + 
+        A_{3}\cos\alpha x\sin\beta y + A_{4}\cos\alpha x\cos\beta y + \\
+        &A_{5}\sinh\alpha x\sinh\beta y + A_{6}\sinh\alpha x\cosh\beta y + \\
+        &A_{7}\cosh\alpha x\sinh\beta y + A_{8}\cosh\alpha x\cosh\beta y
+    \end{aligned}
+\end{equation}
+根据不同的边界条件可求得特解。
+
+对于四边简支的矩形薄板，根据边界条件可得其模态振型为
+\begin{equation}
+    \bar{W}(x,y)=A_{1}\sin\alpha x\sin\beta y
+\end{equation}
+且要满足
+\begin{equation}
+    \sin \alpha xa=0, \sin \beta b=0
+\end{equation}
+其中$a$, $b$为矩阵板的边长。
+则有
+\begin{equation}
+    \alpha=\frac{n\pi}{a},\ \beta=\frac{m\pi}{b}
+\end{equation}
+其固有频率为
+\begin{equation}
+    \omega_{nm}=\pi^{2}\left[\left(\frac{n}{a}\right)^{2}+\left(\frac{m}{b}\right)^{2}\right]\sqrt{\frac{D}{\rho h}}
+\end{equation}
+其模态振型为
+\begin{equation}
+    \phi_{nm}=A_{nm}\sin\frac{n\pi x}{a}\sin\frac{m\pi y}{b}
+\end{equation}
+
+
 \section{模态振型的特性}
 
 \subsection{Orthogonality}

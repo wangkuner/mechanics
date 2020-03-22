@@ -343,10 +343,13 @@
         \begin{equation}\label{vE-L}
             \frac{\partial f}{\partial \mathbf{y}}-\frac{d}{dx}\left(\frac{\partial f}{\partial \dot{\mathbf{y}}}\right)=\mathbf{0}
         \end{equation}
+
         \subsection{Hamilton原理}
+
         \noindent Lagrangian $L=T-U=L(t,\mathbf{q},\dot{\mathbf{q}})$\\
-        Hamilton函数$H=\int_{t_1}^{t_2}Ldt$\\
-        Hamilton原理(Hamilton principle):$\delta H=0$
+        Hamilton函数$S=\int_{t_1}^{t_2}Ldt$，即作用量\\
+        保守系统中牛顿运动方程是该作用量泛函的注定曲线，说明满足牛顿运动定律的系统使得作用量变分为零。
+        Hamilton原理(Hamilton principle):保守系统中物质的真实运动使得作用量最小，即$\delta S=0$。由该变分可得Lagrange方程。
         \begin{equation}\label{vLagrange}
             \frac{\partial L}{\partial \mathbf{q}}-\frac{d}{dt}\left(\frac{\partial L}{\partial \dot{\mathbf{q}}}\right)=\mathbf{0}
         \end{equation}
@@ -408,6 +411,7 @@
         式(\ref{Hamiltonian})的变换只将$\dot{q}_k$变为$p_k$而保持自变量$q_k$不变，即只是将部分自变量变为其对偶量。
         实际上Legendre变换可以将任意个自变量变换为它的对偶量。
 
+        \input{hamiltonian.tex}
         % \bibliographystyle{plain}
         \bibliography{cm}
     \end{document}

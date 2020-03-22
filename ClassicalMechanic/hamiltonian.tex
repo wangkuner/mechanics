@@ -1,0 +1,67 @@
+
+\subsection{Hamilton Equations}
+
+\noindent\textbf{Legendre transformation}
+
+\noindent Single variables
+
+% \begin{definition}
+    The Legendre transformation of the convex function $f(x)$ is another function $g(p)$ defined as 
+    $g(p)=\max_{x}F(p,x)$, where $F(p,x)=px-f(x)$.
+% \end{definition}
+
+The function $F(p,x)$ gets the maximum with respect to $x$ only when $\partial F/\partial x =0$ 
+which means $p = f'(x)$. So, the transformation of the function $x$ is 
+\begin{equation}
+        g(p) = px-f(x),\ p=f'(x)
+\end{equation}
+
+The variable $x$ and $p$ are dual variables. The functions $f$ and $g$ are the Legendre transformation mutually and 
+the function $g(p)$ is also a convex function.
+
+\noindent Multi-variables
+
+For the multi-variable function $f(\mathbf{x}):\mathbf{x}\in \mathbb{R}^{n}\rightarrow \mathbb{R}$, 
+its Legendre transformation is defined as 
+\begin{equation}
+        g(\mathbf{p}) = \mathbf{p}^{T}\mathbf{x}-f(\mathbf{x}),\ \mathbf{p}=f'(\mathbf{x})
+\end{equation}
+
+\noindent \textbf{Hamiltonian}
+The Legendre transformation of the Lagrangian $L(\mathbf{q},\dot{\mathbf{q}},t)$ is  
+\begin{equation}
+    H(\mathbf{p},\mathbf{q},t)=\mathbf{p}^{T}\dot{\mathbf{q}}-L(\mathbf{q},\dot{\mathbf{q}},t),\ \mathbf{p}=\frac{\partial L}{\partial \dot{\mathbf{q}}}
+\end{equation}
+
+$H(\mathbf{p},\mathbf{q},t)$ is the so-called Hamiltonian. 
+The Lagrange equation is equivalent to the following Hamilton equations 
+\begin{equation}
+    \begin{aligned}
+        &\dot{\mathbf{p}} = -\frac{\partial H}{\partial \mathbf{q}} \\
+        &\dot{\mathbf{q}} = \frac{\partial H}{\partial \mathbf{q}}
+    \end{aligned}
+\end{equation}
+
+Proof:
+% \begin{proof}
+    The total differential of $H$ is 
+    $$dH = \frac{\partial H}{\partial \mathbf{p}}d\mathbf{p} + \frac{\partial H}{\partial \mathbf{q}}d\mathbf{q} + \frac{\partial H}{\partial t}dt.$$
+    The total differential of $\mathbf{p}^{T}\dot{\mathbf{q}}-L(\mathbf{q},\dot{\mathbf{q}},t)$ is 
+    $$dH = \dot{\mathbf{p}}^{T}d\mathbf{p} - \frac{\partial L}{\partial \mathbf{q}}d\mathbf{q} - \frac{\partial L}{\partial t}dt$$
+    The two equations are equivalent, so 
+\begin{equation}
+    \dot{\mathbf{q}}=\frac{\partial H}{\partial \mathbf{p}},\ \frac{\partial H}{\partial \mathbf{q}}=-\frac{\partial L}{\partial \mathbf{q}},\ \frac{\partial H}{\partial t}=-\frac{\partial H}{\partial t}.
+\end{equation}
+    Combining with the Lagrange equation and $\mathbf{p}=\frac{\partial L}{\partial \dot{\mathbf{q}}}$, one can obtain the Hamilton equations.
+% \end{proof}
+
+The Euler's homogeneous function theorem for quadric form $f(\mathbf{x})$ is 
+\begin{equation}
+    \mathbf{x}^{T}\frac{\partial f}{\partial \mathbf{x}}=2f
+\end{equation}
+
+Assuming the kinematic energy $T$ is a quadric form with respect to $\dot{\mathbf{q}}$, one can obtain 
+\begin{equation}
+    H(\mathbf{p},\mathbf{q},t)=\mathbf{p}^{T}\dot{\mathbf{q}}-L(\mathbf{q},\dot{\mathbf{q}},t)=\mathbf{p}^{T}\dot{\mathbf{q}}-T+U=\dot{\mathbf{q}}^{T}\frac{\partial T}{\partial \dot{\mathbf{q}}}-T+U=T+U.
+\end{equation}
+Therefore, the Hamiltonian is the total energy.

@@ -1,1 +1,38 @@
 \chapter{The first order ODE}
+
+特定形式的一阶方程已经有解析解。
+\begin{enumerate}
+    \item 形如$\mathrm{d}y/\mathrm{d}x=f(x)g(x)$的可分离变量的方程。采用分离变量法求解。
+    \item 形如$\mathrm{d}y/\mathrm{d}x=g(y/x)$的齐次方程，使用变换$y=ux$后使用分离变量法求解。
+    \item 形如$\mathrm{d}y/\mathrm{d}x + p(x)y = q(x)$的一阶线性方程，先求得齐次解，再使用常数变易法，可求得通用解为\begin{equation}
+        y=ce^{-\int p(x)\mathrm{d}x} + e^{-\int p(x)\mathrm{d}x}\int q(x) e^{\int p(x)\mathrm{d}x}\mathrm{d}x
+    \end{equation}
+    \item 形如$M(x,y)\mathrm{d}x + N(x,y)\mathrm{d}y = 0$的全微分方程，如果$\partial M/\partial y = \partial N/\partial x$，则可找到函数$u(x,\,y)$的全微分为$\mathrm{d}u = M(x,y)\mathrm{d}x + N(x,y)\mathrm{d}y$, $u(x,\,y)=c$为方程的解。
+    \item 可解出$y=f(x,\,y')$的隐方程，另$p=y'$将方程变化为$p,x$的常微分方程，再进一步求解。
+    \item 不显含$x$的隐方程，引入参数$y=\phi(t)$，$y'=\varphi(t)$，变换后求得$x$和$y$。
+\end{enumerate}
+
+一阶微分方程初值问题(Initial value problem)
+\begin{equation}
+    \frac{\mathrm{d}y}{\mathrm{d}x}=f(x,\,y),\ y(x_{0})=y_{0}
+\end{equation}
+
+Lipschitz条件：定义在区域$D$上的函数$f(x,\,y)$，如果存在常数$L$，对任意$(x,\,y_{1}),\ (x,\,y_{2}) \in D$均满足
+\begin{equation}
+    |f(x,\,y_{1}) - f(x,\,y_{2}) | \le L| y_{1}-y_{2} |
+\end{equation}
+则称$f(x,\,y)$在$D$上满足Lipschitz条件。
+
+解的存在性与唯一性：毕卡存在定理：$f(x,\,y)$在闭矩形区域上连续且关于$y$满足Lipschitz条件，
+则初值问题在区间$\left[ x_{0}-h,\,x_{0}+h \right]$上有且仅有一个解。
+
+上述定理可以推论出如果$f(x,y)$存在连续的偏导数，则初值问题存在唯一解。
+
+皮亚诺定理：如果$f(x,y)$连续，则初值问题存在至少一个解。
+
+解的延拓：$f(x,y)$在区域$G$($D \subset G$)内连续，则解可以延拓到区域$D$。
+解可以延拓到区域边界，但是解函数去间不一定能覆盖到区域边界。
+
+解对初值的连续性：$f(x,y)$在区域$G$内连续且满足局部Lipschitz条件，则初值问题的解关于$x,\ x_{0},\ y_{0}$在定义区间内连续。
+
+解对初值的可微性：$f(x,y)$和$\partial f/\partial y$在区域$G$内均连续，则解对$x,\ x_{0},\ y_{0}$在去间内是连续可微的。

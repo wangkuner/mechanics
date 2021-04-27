@@ -73,6 +73,50 @@ $\{\mathbf{r}\left(u,\, v\right),\ \mathbf{r}_{,u},\ \mathbf{r}_{,v},\ \mathbf{n
         G &= \mathbf{r}_{,v}\cdot\mathbf{r}_{,v}
     \end{aligned}
 \end{equation}
+
+给定容许参数变换，$u=u(\tilde{u},\, \tilde{v})$, $v=v(\tilde{u},\, \tilde{v})$，
+参数曲面的第一类基本量变为$\tilde{E},\ \tilde{F},\ \tilde{G}$，根据变换
+\begin{equation}\label{eq:transform}
+    \begin{aligned}
+        \mathbf{r}_{,\tilde{u}} &= \mathbf{r}_{,u}\frac{\partial u}{\partial \tilde{u}} + \mathbf{r}_{,v}\frac{\partial v}{\partial \tilde{u}} \\
+        \mathbf{r}_{,\tilde{v}} &= \mathbf{r}_{,u}\frac{\partial u}{\partial \tilde{v}} + \mathbf{r}_{,v}\frac{\partial v}{\partial \tilde{v}}
+    \end{aligned}
+\end{equation}
+可得
+\begin{equation}
+    \begin{aligned}
+        \tilde{E} &= \mathbf{r}_{,\tilde{u}}\cdot\mathbf{r}_{,\tilde{u}} = 
+        \left(\frac{\partial u}{\partial \tilde{u}},\ \frac{\partial v}{\partial \tilde{u}}\right) \left(\begin{array}{cc}
+        E & F \\ F & G
+        \end{array}\right)\left(\begin{array}{c}
+        \frac{\partial u}{\partial \tilde{u}} \\ \frac{\partial v}{\partial \tilde{u}}
+    \end{array}\right) \\
+        \tilde{F} &= \mathbf{r}_{,\tilde{u}}\cdot\mathbf{r}_{,\tilde{v}} = 
+        \left(\frac{\partial u}{\partial \tilde{u}},\ \frac{\partial v}{\partial \tilde{u}}\right) \left(\begin{array}{cc}
+        E & F \\ F & G
+        \end{array}\right)\left(\begin{array}{c}
+        \frac{\partial u}{\partial \tilde{v}} \\ \frac{\partial v}{\partial \tilde{v}}
+    \end{array}\right) \\
+        \tilde{F} &= \mathbf{r}_{,\tilde{v}}\cdot\mathbf{r}_{,\tilde{u}} = 
+        \left(\frac{\partial u}{\partial \tilde{v}},\ \frac{\partial v}{\partial \tilde{v}}\right) \left(\begin{array}{cc}
+        E & F \\ F & G
+        \end{array}\right)\left(\begin{array}{c}
+        \frac{\partial u}{\partial \tilde{v}} \\ \frac{\partial v}{\partial \tilde{v}}
+    \end{array}\right)
+    \end{aligned}
+\end{equation}
+即
+\begin{equation}\label{eq:transform-matrix}
+    \left(\begin{array}{cc} \tilde{E} & \tilde{F} \\ \tilde{F} & \tilde{G} \end{array}\right) = 
+    \mathbf{J}^{T}\left(\begin{array}{cc} E & F \\ F & G \end{array}\right)\mathbf{J}
+\end{equation}
+其中
+\begin{equation}
+    \mathbf{J} = \left(\begin{array}{cc} \frac{\partial u}{\partial \tilde{u}} & \frac{\partial u}{\partial \tilde{v}} \\ 
+        \frac{\partial v}{\partial \tilde{u}} & \frac{\partial v}{\partial \tilde{v}} \end{array}\right)
+\end{equation}
+即第一类基本量在容许参数变换下仅差一个合同变换。
+
 切向量内积为
 \begin{equation}
     I = \mathrm{d}\mathbf{r} \cdot \mathrm{d}\mathbf{d} = 
@@ -82,13 +126,7 @@ $\{\mathbf{r}\left(u,\, v\right),\ \mathbf{r}_{,u},\ \mathbf{r}_{,v},\ \mathbf{n
         \mathrm{d}u \\ \mathrm{d}v
     \end{array}\right)
 \end{equation}
-二次微分式$I$称作曲面$S$的第一基本形式，与曲面参数选取无关。因为
-\begin{equation}
-    \begin{aligned}
-        \mathbf{r}_{,\tilde{u}} &= \mathbf{r}_{,u}\frac{\partial u}{\partial \tilde{u}} + \mathbf{r}_{,v}\frac{\partial v}{\partial \tilde{u}} \\
-        \mathbf{r}_{,\tilde{v}} &= \mathbf{r}_{,u}\frac{\partial u}{\partial \tilde{v}} + \mathbf{r}_{,v}\frac{\partial v}{\partial \tilde{v}}
-    \end{aligned}
-\end{equation}
+二次微分式$I$称作曲面$S$的\textbf{第一基本形式}，与曲面参数选取无关。因为根据式\eqref{eq:transform}，
 \begin{equation}
     \begin{aligned}
     \mathrm{d}\mathbf{r} &= \mathbf{r}_{,u}\mathrm{d}u + \mathbf{r}_{,v}\mathrm{d}v  \\
@@ -99,10 +137,76 @@ $\{\mathbf{r}\left(u,\, v\right),\ \mathbf{r}_{,u},\ \mathbf{r}_{,v},\ \mathbf{n
     &= \mathbf{r}_{,\tilde{u}}\mathrm{d}\tilde{u} + \mathbf{r}_{,\tilde{v}}\mathrm{d}\tilde{v}
     \end{aligned}
 \end{equation}
-即一次微分式(\ref{eq:first-diff})与参数选取无关，故$I$为一次微分式的内积也与参数选取无关。
+即一次微分式\eqref{eq:first-diff}与参数选取无关，故$I$为一次微分式的内积也与参数选取无关。
+
+\textcolor{red}{\textbf{第一类基本量在容许参数变换下差一个合同变换，但是第一类基本形式却保持不变。}}
+
+正则曲面上参数曲线的弧长可以用第一类基本量表示，给定参数曲线$\mathbf{r}\left(u(t),\, v(t)\right)$, 
+曲线切向量为
+\begin{equation}
+    \frac{\mathrm{d}\mathbf{r}\left(u(t),\, v(t)\right)}{\mathrm{d}t} = 
+    \mathbf{r}_{,u}\frac{\mathrm{d}u}{\mathrm{d}t} + \mathbf{r}_{,v}\frac{\mathrm{d}v}{\mathrm{d}t}
+\end{equation}
+曲线弧长为
+\begin{equation}
+    s=\int_{a}^{b}\|\mathbf{r}'\left(t\right)\|\mathrm{d}t = 
+    \int_{a}^{b}\sqrt{E\left(\frac{\mathrm{d}u}{\mathrm{d}t}\right)^{2} + 
+    2F\frac{\mathrm{d}u}{\mathrm{d}t}\frac{\mathrm{d}v}{\mathrm{d}t} + 
+    G\left(\frac{\mathrm{d}v}{\mathrm{d}t}\right)}\mathrm{d}t
+\end{equation}
+
+在参数曲面上取曲线$u$, $u+\mathrm{d}u$, $v$, $v+\mathrm{d}v$围成的面积微元，其面积为
+\begin{equation}
+    \begin{aligned}
+    \mathrm{d}\sigma &= \| \mathbf{r}_{,u}\times\mathbf{r}_{,v} \|\mathrm{d}u\mathrm{d}v
+    = \|\mathbf{r}_{,u}\|\|\mathbf{r}_{,v}\|\sin\angle\left(\mathbf{r}_{,u},\,\mathbf{r}_{,v}\right)\mathrm{d}u\mathrm{d}v \\
+    &= \sqrt{EG}\sqrt{1-\left(\frac{F}{\sqrt{EG}}\right)^{2}}\mathrm{d}u\mathrm{d}v = \sqrt{EG-F^{2}}\mathrm{d}u\mathrm{d}v
+    \end{aligned}
+\end{equation}
+正则参数曲面面积：
+\begin{equation}
+    A=\iint_{D}\sqrt{EG-F^{2}}\mathrm{d}u\mathrm{d}v
+\end{equation}
+容许参数变换不改变正则参数曲面面积公式的形式，即
+\begin{equation}
+    A=\iint_{D}\sqrt{EG-F^{2}}\mathrm{d}u\mathrm{d}v = \iint_{D}\sqrt{\tilde{E}\tilde{G}-\tilde{F}^{2}}\mathrm{d}\tilde{u}\mathrm{d}\tilde{v}
+\end{equation}
+证明：给定容许参数变换$u=u(\tilde{u},\, \tilde{v})$, $v=v(\tilde{u},\, \tilde{v})$，
+根据式\eqref{eq:transform-matrix}可得
+\begin{equation*}
+    \det\left(\begin{array}{cc} \tilde{E} & \tilde{F} \\ \tilde{F} & \tilde{G} \end{array}\right) = 
+    \tilde{E}\tilde{G}-\tilde{F}^{2} =
+    J^{2}\det\left(\begin{array}{cc} E & F \\ F & G \end{array}\right) = 
+    J^{2}\left(EG-F^{2}\right)
+\end{equation*}
+即
+\begin{equation*}
+    \sqrt{\tilde{E}\tilde{G}-\tilde{F}^{2}} = J\sqrt{EG-F^{2}}
+\end{equation*}
+其中
+\begin{equation*}
+    J = \det\left(\mathbf{J}\right)
+\end{equation*}
+带入
+\begin{equation*}
+    A = \iint_{D}\sqrt{EG-F^{2}}J\mathrm{d}\tilde{u}\mathrm{d}\tilde{v}
+\end{equation*}
+得
+\begin{equation*}
+    A = \iint_{D}\sqrt{\tilde{E}\tilde{G}-\tilde{F}^{2}}\mathrm{d}\tilde{u}\mathrm{d}\tilde{v}
+\end{equation*}
+故参数曲面面积不随参数变换而变化。
+
 
 正交参数曲线网
 
+\begin{theorem}
+    假定正则参数曲面$S:\mathbf{r}=\mathbf{r}\left(u,\, v\right)$上有两个\textbf{处处线性无关}的\textbf{连续可微}的切向量场，
+    $\mathbf{a}\left(u,\,v\right)$, $\mathbf{b}\left(u,\,v\right)$, $\forall p\in S,\ \exists U_{p}\subseteq S$
+    以及在在$U$上的新的参数系$\left(\tilde{u},\,\tilde{v}\right)$，
+    使得新参数曲线的切向量$\mathbf{r}_{,\tilde{u}},\ \mathbf{r}_{,\tilde{v}}$分别与$\mathbf{a}$, $\mathbf{b}$平行，
+    即$\mathbf{r}_{,\tilde{u}}//\mathbf{a},\ \mathbf{r}_{,\tilde{v}}//\mathbf{b}$。
+\end{theorem}
 保长对应
 
 保角对应

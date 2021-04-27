@@ -1,0 +1,108 @@
+\section{Curved surface}
+
+\textbf{正则参数曲面}的定义：
+\begin{equation}
+    \mathbf{r}\left(u,\, v\right) = \left( \begin{array}{c}
+        x(u,\,v) \\ y(u,\,v) \\ z(u,\,v)
+    \end{array} \right)
+\end{equation}
+满足：
+\begin{enumerate}
+    \item[1)] $x(u,\,v)$, $y(u,\,v)$, $z(u,\,v)$有3次以上连续偏导数；
+    \item[2)] $\mathbf{r}_{,u}\times\mathbf{r}_{,v}\neq\mathbf{0}$。
+\end{enumerate}
+
+\textbf{容许参数变换}：$u=u(\tilde{u},\, \tilde{v})$, $v=v(\tilde{u},\, \tilde{v})$, 满足
+\begin{enumerate}
+    \item[1)] $u=u(\tilde{u},\, \tilde{v})$, $v=v(\tilde{u},\, \tilde{v})$有3次以上连续偏导数；
+    \item[2)] $\left| \frac{\partial\left(u,\, v\right)}{\partial\left(\tilde{u},\, \tilde{v}\right)} \right|\neq 0$。
+\end{enumerate}
+
+其中$\mathbf{r}_{,u}\times\mathbf{r}_{,v}$指向曲面的正侧，
+$\left| \frac{\partial\left(u,\, v\right)}{\partial\left(\tilde{u},\, \tilde{v}\right)} \right|>0$
+为保持参数曲面定向不变的充要条件。
+
+\textbf{正则曲面}定义：
+\begin{definition}
+    $S$是$E^{3}$中一张正则曲面，则$S \subseteq E^{3}$, $\forall p\in S$, 
+    $\exists$点$p$的邻域$V\in E^{3}$以及$U\subseteq E^{2}$, 使得$\mathbf{r}:U\mapsto V\cap S$为双射，
+    且$\mathbf{r}\left(u,\,v\right),\ (u,\,v)\in U$为正则参数曲面。
+\end{definition}
+
+\textbf{切向量}：曲面$S$上经过点$p$的任意一条连续可微曲线在该点的切向量为曲面$S$在点$p$的切向量。
+曲纹坐标线的切向量为$\mathbf{r}_{,u}$, $\mathbf{r}_{,v}$. 
+曲面$S$上过点$p$的曲线$\mathbf{r}\left(u(t),\,v(t)\right)$的切向量为
+\begin{equation}
+    \frac{\mathrm{d}\mathbf{r}}{\mathrm{d}t} = \mathbf{r}_{,u}\frac{\mathrm{d}u}{\mathrm{d}t} + 
+    \mathbf{r}_{,v}\frac{\mathrm{d}v}{\mathrm{d}t}
+\end{equation}
+可以看出，点$p$处切向量是$\mathbf{r}_{,u}$和$\mathbf{r}_{,v}$的线性组合。
+由于$\mathbf{r}_{,u}$, $\mathbf{r}_{,v}$是线性无关的，
+故曲面$S$在点$p$的全体切向量构成一个二维向量空间，称为曲面$S$在点$p$的切空间，记作$T_{p}S$。
+空间$E^{3}$中经过点$p$由切向量$\mathbf{r}_{,u}$, $\mathbf{r}_{,v}$张成的平面为曲面$S$在点$p$的\textbf{切平面}。
+其参数方程为
+\begin{equation}
+    \mathbf{x}\left(\xi,\,\eta\right)=\mathbf{r}\left(u,\, v\right) + \xi\mathbf{r}_{,u} + \eta\mathbf{r}_{,v}
+\end{equation}
+\textbf{法向量}：
+\begin{equation}
+    \mathbf{n}\left(u,\,v\right)=\frac{\mathbf{r}_{,u}\times\mathbf{r}_{,v}}{\|\mathbf{r}_{,u}\times\mathbf{r}_{,v}\|}
+\end{equation}
+$E^{3}$中经过点$p$以法向量$\mathbf{n}\left(u,\,v\right)$为方向向量的直线为曲面$S$在点$p$的法线，其参数方程为
+\begin{equation}
+    \mathbf{x}\left(t\right)=\mathbf{r}\left(u,\, v\right) + t\mathbf{n}\left(u,\,v\right)
+\end{equation}
+
+$\{\mathbf{r}\left(u,\, v\right),\ \mathbf{r}_{,u},\ \mathbf{r}_{,v},\ \mathbf{n}\left(u,\,v\right)\}$构成曲面$S$上的\textbf{自然标架}。
+一般来说$\mathbf{r}_{,u},\ \mathbf{r}_{,v}$不是正交向量。
+
+第一基本形式
+
+正则参数曲面$S$在点$\mathbf{r}\left(u,\,v\right)$处的任意一个切向量表示为
+\begin{equation}\label{eq:first-diff}
+    \mathrm{d}\mathbf{r} = \mathbf{r}_{,u}\mathrm{d}u + \mathbf{r}_{,v}\mathrm{d}v
+\end{equation}
+因为$\mathbf{r}_{,u},\ \mathbf{r}_{,v}$不一定是正交向量，故切向量的内积一般不能表示为切向量在自然基底下坐标分量的平方和。
+如果知道自然基底的度量系数，切向量内积就可以表示为$\left(\mathrm{d}u,\,\mathrm{d}v\right)$的二次型。
+
+\textbf{第一类基本量}
+\begin{equation}
+    \begin{aligned}
+        E &= \mathbf{r}_{,u}\cdot\mathbf{r}_{,u} \\
+        F &= \mathbf{r}_{,u}\cdot\mathbf{r}_{,v} = \mathbf{r}_{,v}\cdot\mathbf{r}_{,u} \\
+        G &= \mathbf{r}_{,v}\cdot\mathbf{r}_{,v}
+    \end{aligned}
+\end{equation}
+切向量内积为
+\begin{equation}
+    I = \mathrm{d}\mathbf{r} \cdot \mathrm{d}\mathbf{d} = 
+    \left(\mathrm{d}u,\ \mathrm{d}v\right)\left(\begin{array}{cc}
+        E & F \\ F & G
+    \end{array}\right)\left(\begin{array}{c}
+        \mathrm{d}u \\ \mathrm{d}v
+    \end{array}\right)
+\end{equation}
+二次微分式$I$称作曲面$S$的第一基本形式，与曲面参数选取无关。因为
+\begin{equation}
+    \begin{aligned}
+        \mathbf{r}_{,\tilde{u}} &= \mathbf{r}_{,u}\frac{\partial u}{\partial \tilde{u}} + \mathbf{r}_{,v}\frac{\partial v}{\partial \tilde{u}} \\
+        \mathbf{r}_{,\tilde{v}} &= \mathbf{r}_{,u}\frac{\partial u}{\partial \tilde{v}} + \mathbf{r}_{,v}\frac{\partial v}{\partial \tilde{v}}
+    \end{aligned}
+\end{equation}
+\begin{equation}
+    \begin{aligned}
+    \mathrm{d}\mathbf{r} &= \mathbf{r}_{,u}\mathrm{d}u + \mathbf{r}_{,v}\mathrm{d}v  \\
+    &= \mathbf{r}_{,u}\left(\frac{\partial u}{\partial \tilde{u}}\mathrm{d}\tilde{u} + \frac{\partial u}{\partial \tilde{v}}\mathrm{d}\tilde{v}\right) + 
+       \mathbf{r}_{,v}\left(\frac{\partial v}{\partial \tilde{u}}\mathrm{d}\tilde{u} + \frac{\partial v}{\partial \tilde{v}}\mathrm{d}\tilde{v}\right)  \\
+    &= \left(\mathbf{r}_{,u}\frac{\partial u}{\partial \tilde{u}} + \mathbf{r}_{,v}\frac{\partial v}{\partial \tilde{u}}\right)\mathrm{d}\tilde{u} + 
+       \left(\mathbf{r}_{,u}\frac{\partial u}{\partial \tilde{v}} + \mathbf{r}_{,v}\frac{\partial v}{\partial \tilde{v}}\right)\mathrm{d}\tilde{v} \\
+    &= \mathbf{r}_{,\tilde{u}}\mathrm{d}\tilde{u} + \mathbf{r}_{,\tilde{v}}\mathrm{d}\tilde{v}
+    \end{aligned}
+\end{equation}
+即一次微分式(\ref{eq:first-diff})与参数选取无关，故$I$为一次微分式的内积也与参数选取无关。
+
+正交参数曲线网
+
+保长对应
+
+保角对应

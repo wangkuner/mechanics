@@ -1,14 +1,18 @@
 \documentclass[12pt]{article}
     % fonts
     \usepackage{ctex}
-    \usepackage{fontspec}%set fonts
     % \usepackage{mathptmx}
-    \newfontfamily\cnew{Courier New}
     \usepackage{amsmath}
     % \usepackage[notext]{stix}
-    \usepackage{newtxmath}
+    % \usepackage{newtxmath}
+    \usepackage{unicode-math}
+    \usepackage{fontspec}%set fonts
+    \setmathfont{STIX2Math.otf}
     \setmainfont{Times New Roman}
+    \newfontfamily\cnew{Courier New}
 
+    % \theoremstyle{definition}
+    \newtheorem{definition}{定义}[section]
     % paper set
     \usepackage{geometry}%set paper
     \geometry{
@@ -22,11 +26,18 @@
     \renewcommand{\baselinestretch}{1.0}
     % \usepackage{booktabs} % for three-line table
     \usepackage{array}
+    \usepackage[colorlinks,
+            linkcolor=cyan,
+            anchorcolor=blue,
+            citecolor=blue]{hyperref}
+    \usepackage{bookmark}
 
-    \title{Learning Notes of Apr 2019}
+    \title{Learning Notes of \textit{Differential Geometry}}
     \author{Kun Wang}
-    \date{2019年4月}
+    % \date{2021年4月26日-\today}
 
     \begin{document}
         \maketitle
+
+        \input{3curvedSurface.tex}
     \end{document}

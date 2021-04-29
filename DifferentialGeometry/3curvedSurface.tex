@@ -207,6 +207,65 @@ $\{\mathbf{r}\left(u,\, v\right),\ \mathbf{r}_{,u},\ \mathbf{r}_{,v},\ \mathbf{n
     使得新参数曲线的切向量$\mathbf{r}_{,\tilde{u}},\ \mathbf{r}_{,\tilde{v}}$分别与$\mathbf{a}$, $\mathbf{b}$平行，
     即$\mathbf{r}_{,\tilde{u}}//\mathbf{a},\ \mathbf{r}_{,\tilde{v}}//\mathbf{b}$。
 \end{theorem}
+
+\begin{theorem}
+    给定正则参数曲面$S:\mathbf{r}=\mathbf{r}\left(u,\, v\right)$上一点$p$，
+    必然存在一个点$p$的领域$U(p)\subseteq S$，以及新的参数$\left(\tilde{u},\,\tilde{v}\right)$,
+    使得新参数曲线的切向量是正交的，即$\left(\tilde{u},\,\tilde{v}\right)$是曲面$S$在$U$上的正交参数系。
+\end{theorem}
+\textbf{证明}：正则参数曲面$\mathbf{r}=\mathbf{r}\left(u,\, v\right)$参数曲线的切向量作Schmidt正交化。
+$$\mathbf{e}_{1}=\frac{\mathbf{r}_{,u}}{\|\mathbf{r}_{,u}\|}=\frac{1}{\sqrt{E}}\mathbf{r}_{,u}$$
+$$\mathbf{b}=\mathbf{r}_{,v}+\lambda\mathbf{e}_{1}$$
+$$\mathbf{b}\cdot\mathbf{e}_{1}=0$$
+$$\lambda=-\mathbf{r}_{,v}\cdot\mathbf{r}_{,u}/\|\mathbf{r}_{,u}\|=-\frac{F}{\sqrt{E}}$$
+$$\mathbf{b}=\mathbf{r}_{,v}-\frac{F}{E}\mathbf{r}_{,u}$$
+$$\mathbf{e}_{2}=\frac{\mathbf{b}}{\|\mathbf{b}\|} = \frac{1}{\sqrt{EG-F^{2}}}\left(\sqrt{E}\mathbf{r}_{,v}-\frac{F}{\sqrt{E}}\mathbf{r}_{,u}\right)$$
+得到曲面$S$正交向量场$\mathbf{e}_{1},\ \mathbf{e}_{2}$。
+记
+\begin{equation*}
+    \left\{\begin{array}{l}
+    \mathbf{e}_{1}=a_{1}(u,\,v)\mathbf{r}_{,u} + a_{2}(u,\,v)\mathbf{r}_{,v} \\
+    \mathbf{e}_{2}=b_{1}(u,\,v)\mathbf{r}_{,u} + b_{2}(u,\,v)\mathbf{r}_{,v}
+    \end{array}\right.
+\end{equation*}
+$a_{1}(u,\,v)$, $a_{2}(u,\,v)$, $b_{1}(u,\,v)$, $b_{2}(u,\,v)$均为连续可微函数，且
+$a_{1}^{2}+a_{2}^{2}\neq 0$, $b_{1}^{2}+b_{2}^{2}\neq 0$,
+$\left| \begin{array}{cc} a_{1} & a_{2} \\ b_{1} & b_{2} \end{array} \right|\neq 0$
+因为根据引理，存在$\lambda(u,\,v)\neq 0$, $\mu(u,\, v)\neq 0$，使得
+\begin{equation*}
+    \begin{aligned}
+    \mathrm{d}\tilde{u} &=\lambda\left(b_{2}\mathrm{d}u-b_{1}\mathrm{d}v\right)\\
+    \mathrm{d}\tilde{v} &=\mu\left(-a_{2}\mathrm{d}u+a_{1}\mathrm{d}v\right)
+    \end{aligned}
+\end{equation*}
+\begin{equation*}
+    \left[\begin{array}{c}
+        \mathrm{d}\tilde{u} \\ \mathrm{d}\tilde{v}
+    \end{array}\right] = \left[\begin{array}{cc}
+        \lambda b_{2} & -\lambda b_{1} \\ -\mu a_{2} & \mu a_{1}
+    \end{array}\right]\left[\begin{array}{c}
+        \mathrm{d}u \\ \mathrm{d}v
+    \end{array}\right]
+\end{equation*}
+\begin{equation*}
+    \left[\begin{array}{c}
+        \mathrm{d}u \\ \mathrm{d}v
+    \end{array}\right] = \frac{1}{\lambda\mu\left(a_{1}b_{2}-a_{2}b_{1}\right)}\left[\begin{array}{cc}
+        \mu a_{1} & \lambda b_{1} \\ \mu a_{2} & \lambda b_{2}
+    \end{array}\right]\left[\begin{array}{c}
+        \mathrm{d}\tilde{u} \\ \mathrm{d}\tilde{v}
+    \end{array}\right]
+\end{equation*}
+\begin{equation*}
+    \begin{aligned}
+        \mathbf{r}_{,\tilde{u}} &= \mathbf{r}_{,u}\frac{\partial u}{\partial\tilde{u}} + \mathbf{r}_{,v}\frac{\partial v}{\partial\tilde{u}}
+        =\frac{1}{\lambda\left(a_{1}b_{2}-a_{2}b_{1}\right)}\left(a_{1}\mathbf{r}_{,u}+a_{2}\mathbf{r}_{,v}\right) // \mathbf{e}_{1} \\
+        \mathbf{r}_{,\tilde{v}} &= \mathbf{r}_{,u}\frac{\partial u}{\partial\tilde{v}} + \mathbf{r}_{,v}\frac{\partial v}{\partial\tilde{v}}
+        =\frac{1}{\mu\left(a_{1}b_{2}-a_{2}b_{1}\right)}\left(b_{1}\mathbf{r}_{,u}+b_{2}\mathbf{r}_{,v}\right) // \mathbf{e}_{2}
+    \end{aligned}
+\end{equation*}
+即$\mathbf{r}_{,\tilde{u}} \perp \mathbf{r}_{,\tilde{v}}$，得证。
+
 保长对应
 
 保角对应

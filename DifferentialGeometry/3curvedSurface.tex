@@ -272,6 +272,76 @@ $\left| \begin{array}{cc} a_{1} & a_{2} \\ b_{1} & b_{2} \end{array} \right|\neq
 \end{equation*}
 即$\mathbf{r}_{,\tilde{u}} \perp \mathbf{r}_{,\tilde{v}}$，得证。
 
-保长对应
+\textbf{切映射}
+
+给定两个参数曲面，他们的参数方程为
+\begin{equation*}
+    \begin{aligned}
+        &S_{1}:\mathbf{r}=\mathbf{r}_{1}\left(u_{1},\,v_{1}\right),\ \left(u_{1},\,v_{1}\right)\in D_{1} \\
+        &S_{2}:\mathbf{r}=\mathbf{r}_{2}\left(u_{2},\,v_{2}\right),\ \left(u_{2},\,v_{2}\right)\in D_{2} \\
+    \end{aligned}
+\end{equation*}
+其中$D_{1}$, $D_{2}$为$E_{2}$中两个区域。映射
+\begin{equation}\label{eq:map}
+    \sigma:u_{2}=f\left(u_{1},\,v_{1}\right),\ v_{2}=g\left(u_{1},\,v_{1}\right)
+\end{equation}
+将$D_{1}$中的点映射到$D_{2}$中，因为$D_{1}\rightarrow S_{1}$，$D_{2}\rightarrow S_{2}$为双射，
+故映射$\sigma$也将$S_{1}$上的点映射到$S_{2}$上。
+如果\eqref{eq:map}中函数是连续可微的，则称映射$\sigma:S_{1}\rightarrow S_{2}$是连续可微的。
+
+\begin{definition}
+    假定映射$\sigma:S_{1}\rightarrow S_{2}$是3次以上连续可微的，
+    则映射$\sigma$在每一点$p\in S_{1}$诱导出从切空间$T_{p}S_{1}$到切空间$T_{\sigma(p)}S_{2}$
+    的一个线性映射$\sigma_{*p}:T_{p}S_{1}\rightarrow T_{\sigma(p)}S_{2}$，
+    称此映射为由映射$\sigma$在点$p$的切空间$T_{p}S_{1}$上诱导的切映射。
+\end{definition}
+
+曲面$S_{1}$上曲线$C_{1}$:$\mathbf{r}_{1}\left(u_{1}(t),\,v_{1}(t)\right),\ t\in\left(t_{0}-\varepsilon,\,t_{0}+\varepsilon\right)$
+经$\sigma$映射到$S_{2}$上得到一条连续可微曲线$C_{2}$:
+$\mathbf{r}_{2}\left(f\left(u_{1}(t),\,v_{1}(t)\right),\,g\left(u_{1}(t),\,v_{1}(t)\right)\right),\ t\in\left(t_{0}-\varepsilon,\,t_{0}+\varepsilon\right)$.
+$C_{2}$的切向量为
+\begin{equation*}
+    \frac{\mathrm{d}\mathbf{r}_{2}}{\mathrm{d}t}=\left[\begin{array}{cc}
+        \mathbf{r}_{2,u_{2}} & \mathbf{r}_{2,v_{2}}
+    \end{array}\right]\left[\begin{array}{cc}
+        \frac{\partial f}{\partial u_{1}} & \frac{\partial f}{\partial v_{1}} \\
+        \frac{\partial g}{\partial u_{1}} & \frac{\partial g}{\partial v_{1}}
+    \end{array}\right]\left[\begin{array}{cc}
+        \frac{\mathrm{d}u_{1}}{\mathrm{d}t} \\ \frac{\mathrm{d}v_{1}}{\mathrm{d}t}
+    \end{array}\right]
+\end{equation*}
+
+定义一种切映射
+\begin{equation}
+    \sigma_{*p}\left(\frac{\mathrm{d}\mathbf{r}_{1}}{\mathrm{d}t}|_{t_{0}}\right)
+    = \frac{\mathrm{d}\mathbf{r}_{2}}{\mathrm{d}t}|_{t_{0}}
+\end{equation}
+即
+\begin{equation}
+    \sigma_{*p}\left(\mathbf{r}_{1,u_{1}}\frac{\mathrm{d}u_{1}}{\mathrm{d}t}+\mathbf{r}_{1,v_{1}}\frac{\mathrm{d}v_{1}}{\mathrm{d}t}\right)=
+    \left[\begin{array}{cc}
+        \mathbf{r}_{2,u_{2}} & \mathbf{r}_{2,v_{2}}
+    \end{array}\right]\left[\begin{array}{cc}
+        \frac{\partial f}{\partial u_{1}} & \frac{\partial f}{\partial v_{1}} \\
+        \frac{\partial g}{\partial u_{1}} & \frac{\partial g}{\partial v_{1}}
+    \end{array}\right]\left[\begin{array}{cc}
+        \frac{\mathrm{d}u_{1}}{\mathrm{d}t} \\ \frac{\mathrm{d}v_{1}}{\mathrm{d}t}
+    \end{array}\right]
+\end{equation}
+亦可表示为
+\begin{equation}
+    \sigma_{*p}\left(\begin{array}{c}
+        \mathbf{r}_{1,u_{1}} \\ \mathbf{r}_{1,v_{1}}
+    \end{array}\right)=\left[\begin{array}{cc}
+        \mathbf{r}_{2,u_{2}} & \mathbf{r}_{2,v_{2}}
+    \end{array}\right]\left[\begin{array}{cc}
+        \frac{\partial f}{\partial u_{1}} & \frac{\partial f}{\partial v_{1}} \\
+        \frac{\partial g}{\partial u_{1}} & \frac{\partial g}{\partial v_{1}}
+    \end{array}\right]
+\end{equation}
+
+
+\textbf{保长对应}
+
 
 保角对应
